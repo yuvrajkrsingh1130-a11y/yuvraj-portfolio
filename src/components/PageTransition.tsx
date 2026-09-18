@@ -99,13 +99,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         className="fixed inset-0 z-[120] flex origin-bottom scale-y-0 items-center justify-center bg-[var(--ink)] [visibility:hidden]"
         aria-hidden="true"
       >
-        <div className="text-center text-[var(--paper)]">
-          <p className="display text-[clamp(2.6rem,9vw,8rem)] leading-[0.85]">
+        <div className="absolute inset-4 border-[2.5px] border-[var(--acid)] md:inset-6" />
+        <div className="text-center text-[var(--concrete)]">
+          <p className="display text-[clamp(2.6rem,9vw,8rem)] leading-[0.88]">
             YUVRAJ
             <br />
-            SINGH<span className="text-[var(--accent)]">*</span>
+            SINGH<span className="text-[var(--acid)]">*</span>
           </p>
-          <span ref={labelRef} className="tiny-label mt-6 inline-block text-[var(--accent)]">
+          <span ref={labelRef} className="tiny-label mt-6 inline-block bg-[var(--acid)] px-2 py-1 text-[var(--ink)]">
             WORK
           </span>
         </div>

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 
 /* 01 — LIQUID TYPE · hover → letters distort via SVG displacement */
 
@@ -15,17 +16,25 @@ export default function LiquidType() {
     dispRef.current?.setAttribute("scale", state.current.s.toFixed(2));
   };
 
-  const go = (f: number, s: number) => {
-    if (prefersReducedMotion()) return;
+  const go = (on: boolean) => {
+    if (prefersReducedMotion() || labControls.paused) return;
+    const s = on ? 18 + labControls.chaos * 38 : 0;
+    const f = on ? 0.008 + labControls.chaos * 0.01 : 0;
     tweenRef.current?.kill();
-    tweenRef.current = gsap.to(state.current, { f, s, duration: 0.7, ease: "power2.out", onUpdate: apply });
+    tweenRef.current = gsap.to(state.current, {
+      f,
+      s,
+      duration: 0.7 / labControls.speed,
+      ease: "power2.out",
+      onUpdate: apply,
+    });
   };
 
   return (
     <div
-      className="flex h-full w-full items-center justify-center bg-[var(--ink)] text-[var(--paper)]"
-      onPointerEnter={() => go(0.012, 34)}
-      onPointerLeave={() => go(0, 0)}
+      className="flex h-full w-full items-center justify-center bg-[var(--ink)] text-[var(--concrete)]"
+      onPointerEnter={() => go(true)}
+      onPointerLeave={() => go(false)}
       data-cursor="HOVER"
     >
       <svg width="0" height="0" aria-hidden="true">

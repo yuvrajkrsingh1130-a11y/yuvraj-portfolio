@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createBlobScene, webglAvailable, type BlobHandle } from "../three/blobScene";
 import { prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 
 /* 03 — ORBIT OBJECT · pointer → live 3D form rotates & bulges */
 
@@ -37,20 +38,27 @@ export default function OrbitObject() {
     ro.observe(wrap);
     handle.resize(wrap.clientWidth, wrap.clientHeight);
 
-    const io = new IntersectionObserver((e) => handle?.setPaused(!e[0].isIntersecting));
+    let visible = true;
+    const syncPause = () => handle?.setPaused(!visible || labControls.paused);
+    const io = new IntersectionObserver((e) => {
+      visible = e[0].isIntersecting;
+      syncPause();
+    });
     io.observe(wrap);
+    const poll = window.setInterval(syncPause, 300);
 
     const onMove = (e: PointerEvent) => {
       const r = wrap.getBoundingClientRect();
       const x = ((e.clientX - r.left) / r.width) * 2 - 1;
       const y = -(((e.clientY - r.top) / r.height) * 2 - 1);
       handle?.setPointer(x, y);
-      handle?.setVelocity(0.8);
+      handle?.setVelocity(0.8 * labControls.speed);
     };
     wrap.addEventListener("pointermove", onMove, { passive: true });
 
     const h = handle;
     return () => {
+      window.clearInterval(poll);
       ro.disconnect();
       io.disconnect();
       wrap.removeEventListener("pointermove", onMove);
@@ -61,7 +69,7 @@ export default function OrbitObject() {
   if (failed) {
     return (
       <div className="flex h-full w-full items-center justify-center bg-[var(--ink)]">
-        <div className="h-40 w-40 rounded-full border border-[var(--paper)]" aria-hidden="true" />
+        <div className="h-40 w-40 rounded-full border border-[var(--concrete)]" aria-hidden="true" />
       </div>
     );
   }

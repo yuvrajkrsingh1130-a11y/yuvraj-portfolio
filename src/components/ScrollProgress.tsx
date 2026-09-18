@@ -34,7 +34,7 @@ export default function ScrollProgress() {
     <>
       <div
         ref={barRef}
-        className="fixed left-0 top-0 z-[115] h-[2px] w-full origin-left scale-x-0 bg-[var(--accent)]"
+        className="fixed left-0 top-0 z-[115] h-[3px] w-full origin-left scale-x-0 bg-[var(--acid)]"
         aria-hidden="true"
       />
       <span

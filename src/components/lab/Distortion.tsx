@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 import CoverArt from "../CoverArt";
 import { projects } from "../../data/projects";
 
@@ -18,13 +19,14 @@ export default function Distortion() {
     turbRef.current?.setAttribute("seed", String(Math.floor(state.current.seed)));
   };
 
-  const go = (s: number) => {
-    if (prefersReducedMotion()) return;
+  const go = (on: boolean) => {
+    if (prefersReducedMotion() || labControls.paused) return;
+    const target = on ? 26 + labControls.chaos * 48 : 0;
     tweenRef.current?.kill();
     tweenRef.current = gsap.to(state.current, {
-      s,
-      seed: s > 0 ? 14 : 2,
-      duration: 0.6,
+      s: target,
+      seed: on ? 14 : 2,
+      duration: 0.6 / labControls.speed,
       ease: "power2.out",
       onUpdate: apply,
     });
@@ -33,8 +35,8 @@ export default function Distortion() {
   return (
     <div
       className="relative h-full w-full overflow-hidden"
-      onPointerEnter={() => go(46)}
-      onPointerLeave={() => go(0)}
+      onPointerEnter={() => go(true)}
+      onPointerLeave={() => go(false)}
       data-cursor="HOVER"
     >
       <svg width="0" height="0" aria-hidden="true">
@@ -46,7 +48,7 @@ export default function Distortion() {
       <div className="h-full w-full" style={{ filter: `url(#${id})` }}>
         <CoverArt project={project} className="h-full w-full" label="Distortion study" />
       </div>
-      <span className="tiny-label absolute bottom-3 left-3 text-[var(--paper)] mix-blend-difference">
+      <span className="tiny-label absolute bottom-3 left-3 text-[var(--concrete)] mix-blend-difference">
         HOVER TO CORRUPT
       </span>
     </div>

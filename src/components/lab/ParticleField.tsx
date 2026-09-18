@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 
 /* 02 — PARTICLE FIELD · pointer → particles scatter & regroup */
 
@@ -51,7 +52,7 @@ export default function ParticleField() {
 
     const drawStatic = () => {
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "#0c0c0c";
+      ctx.fillStyle = "#0a0a0a";
       for (const p of particles) ctx.fillRect(p.x, p.y, 2, 2);
     };
 
@@ -67,20 +68,23 @@ export default function ParticleField() {
         return;
       }
       raf = requestAnimationFrame(step);
+      if (labControls.paused) return;
+      const R = 70 + labControls.chaos * 130;
+      const sp = labControls.speed;
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "#0c0c0c";
+      ctx.fillStyle = "#0a0a0a";
       for (const p of particles) {
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
         const d2 = dx * dx + dy * dy;
-        if (d2 < 110 * 110 && d2 > 0.01) {
+        if (d2 < R * R && d2 > 0.01) {
           const d = Math.sqrt(d2);
-          const f = ((110 - d) / 110) * 1.6;
+          const f = ((R - d) / R) * 1.6 * sp;
           p.vx += (dx / d) * f;
           p.vy += (dy / d) * f;
         }
-        p.vx += (p.hx - p.x) * 0.012;
-        p.vy += (p.hy - p.y) * 0.012;
+        p.vx += (p.hx - p.x) * 0.012 * sp;
+        p.vy += (p.hy - p.y) * 0.012 * sp;
         p.vx *= 0.88;
         p.vy *= 0.88;
         p.x += p.vx;
@@ -128,7 +132,7 @@ export default function ParticleField() {
   return (
     <canvas
       ref={ref}
-      className="h-full w-full touch-none bg-[var(--bone)]"
+      className="h-full w-full touch-none bg-[var(--concrete)]"
       data-cursor="DRAG"
       aria-label="Particle field — particles react to the pointer"
       role="img"

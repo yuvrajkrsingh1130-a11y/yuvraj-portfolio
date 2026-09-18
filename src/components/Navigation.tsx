@@ -6,13 +6,13 @@ import { gsap, prefersReducedMotion } from "../lib/motion";
 import { stopScroll } from "../lib/scroll";
 
 /* ============================================================
-   NAVIGATION — wordmark left, numbered links right, status +
-   clock. Gains a border once the page scrolls. Mobile gets a
-   full-screen stagger menu.
+   NAVIGATION — sticky wireframe bar: wordmark, status pill,
+   IST clock, numbered links. Mobile gets a full-screen panel.
    ============================================================ */
 
-function useClock(): string {
-  const [time, setTime] = useState("");
+/** Live Delhi (IST) clock regardless of visitor timezone. */
+function useISTClock(): string {
+  const [time, setTime] = useState("--:--:--");
   useEffect(() => {
     const fmt = () =>
       setTime(
@@ -21,6 +21,7 @@ function useClock(): string {
           minute: "2-digit",
           second: "2-digit",
           hour12: false,
+          timeZone: "Asia/Kolkata",
         })
       );
     fmt();
@@ -54,12 +55,12 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
       tl.fromTo(
         panel,
         { clipPath: "inset(0 0 100% 0)" },
-        { clipPath: "inset(0 0 0% 0)", duration: reduced ? 0 : 0.55, ease: "power4.inOut" }
+        { clipPath: "inset(0 0 0% 0)", duration: reduced ? 0 : 0.5, ease: "power4.inOut" }
       ).fromTo(
         [...items, ".menu-meta"],
         { yPercent: 110, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: reduced ? 0 : 0.7, stagger: 0.06, ease: "power4.out" },
-        reduced ? 0 : "-=0.25"
+        { yPercent: 0, opacity: 1, duration: reduced ? 0 : 0.65, stagger: 0.055, ease: "power4.out" },
+        reduced ? 0 : "-=0.22"
       );
     } else {
       const tl = gsap.timeline({
@@ -72,13 +73,13 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
       tl.to([...items, ".menu-meta"], {
         yPercent: -60,
         opacity: 0,
-        duration: reduced ? 0 : 0.3,
+        duration: reduced ? 0 : 0.28,
         stagger: 0.03,
         ease: "power2.in",
       }).to(
         panel,
-        { clipPath: "inset(0 0 100% 0)", duration: reduced ? 0 : 0.45, ease: "power4.inOut" },
-        reduced ? 0 : "-=0.1"
+        { clipPath: "inset(0 0 100% 0)", duration: reduced ? 0 : 0.4, ease: "power4.inOut" },
+        reduced ? 0 : "-=0.08"
       );
     }
     return () => {
@@ -86,7 +87,6 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     };
   }, [open]);
 
-  /* close instantly when the route changes behind the panel */
   useEffect(() => {
     if (open) onClose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,12 +95,12 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <div
       ref={panelRef}
-      className="fixed inset-0 z-[100] flex flex-col justify-between bg-[var(--ink)] p-6 pb-8 text-[var(--paper)] [clip-path:inset(0_0_100%_0)] [visibility:hidden] md:p-10"
+      className="fixed inset-0 z-[100] flex flex-col justify-between bg-[var(--ink)] p-6 pb-8 text-[var(--concrete)] [clip-path:inset(0_0_100%_0)] [visibility:hidden] md:p-10"
       aria-hidden={!open}
     >
-      <div className="h-[calc(var(--nav-h))]" />
+      <div className="h-[var(--nav-h)]" />
       <nav aria-label="Mobile">
-        <ul ref={linksRef} className="space-y-1">
+        <ul ref={linksRef} className="space-y-2">
           {navItems.map((item) => (
             <li key={item.to} className="overflow-hidden">
               <button
@@ -109,21 +109,19 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                   onClose();
                   navigateTo(item.to);
                 }}
-                className="display group flex items-baseline gap-4 py-1 text-left text-[clamp(3rem,12vw,6rem)]"
+                className="display group flex w-full items-center gap-5 border-2 border-transparent px-2 py-2 text-left text-[clamp(2.4rem,10vw,5rem)] transition-colors active:border-[var(--acid)] active:bg-[var(--acid)] active:text-[var(--ink)]"
               >
-                <span className="mono text-xs text-[var(--accent)] align-super">{item.index}</span>
-                <span className="transition-transform duration-500 group-active:translate-x-2">
-                  {item.label}
-                </span>
+                <span className="mono text-xs text-[var(--orange)]">[{item.index}]</span>
+                <span>{item.label}</span>
               </button>
             </li>
           ))}
         </ul>
       </nav>
-      <div className="menu-meta flex flex-wrap items-end justify-between gap-4">
+      <div className="menu-meta flex flex-wrap items-end justify-between gap-4 border-t-2 border-[var(--concrete)] pt-6">
         <div className="space-y-1">
-          <p className="tiny-label text-[var(--accent)]">{site.status}</p>
-          <p className="tiny-label opacity-60">{site.location}</p>
+          <p className="tiny-label text-[var(--acid)]">🟢 {site.status}</p>
+          <p className="tiny-label opacity-60">{site.base} — {site.coords}</p>
         </div>
         <a href={`mailto:${site.email}`} className="mono text-sm underline underline-offset-4">
           {site.email}
@@ -138,7 +136,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const headRef = useRef<HTMLElement>(null);
-  const time = useClock();
+  const time = useISTClock();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -154,8 +152,8 @@ export default function Navigation() {
     if (!head) return;
     const tween = gsap.fromTo(
       head.querySelectorAll("[data-nav-item]"),
-      { yPercent: -120, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "power4.out", delay: 0.1 }
+      { yPercent: -130, opacity: 0 },
+      { yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.05, ease: "power4.out", delay: 0.12 }
     );
     return () => {
       tween.kill();
@@ -168,31 +166,35 @@ export default function Navigation() {
     <>
       <header
         ref={headRef}
-        className={`fixed inset-x-0 top-0 z-[110] transition-colors duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[110] border-b-[2.5px] border-[var(--ink)] transition-all duration-300 ${
           menuOpen
-            ? "text-[var(--paper)]"
+            ? "border-transparent bg-transparent text-[var(--concrete)]"
             : scrolled
-              ? "border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--paper)_88%,transparent)] backdrop-blur-[2px]"
-              : ""
+              ? "bg-[var(--concrete)] shadow-[0_4px_0_0_rgba(10,10,10,0.08)]"
+              : "bg-[color-mix(in_srgb,var(--concrete)_86%,transparent)] backdrop-blur-[2px]"
         }`}
       >
-        <div className="flex h-[var(--nav-h)] items-center justify-between gap-4 px-[var(--pad)]">
+        <div className="flex h-[var(--nav-h)] items-center justify-between gap-3 px-[var(--pad)]">
+          {/* wordmark */}
           <div data-nav-item className="overflow-hidden">
             <TransitionLink
               to="/"
-              className="display block text-lg tracking-tight md:text-xl"
+              className="display flex items-center gap-2 text-base tracking-tight md:text-lg"
               aria-label="Yuvraj Singh — home"
             >
-              YUVRAJ SINGH<span className="text-[var(--accent)]">*</span>
+              <span className="inline-block h-3 w-3 bg-[var(--orange)]" aria-hidden="true" />
+              YUVRAJ SINGH
+              <span className="mono hidden text-[0.55rem] opacity-50 sm:inline">©2026</span>
             </TransitionLink>
           </div>
 
-          <div className="hidden items-center gap-8 md:flex">
-            <span data-nav-item className="tiny-label mr-2 hidden items-center gap-2 lg:flex">
+          {/* desktop cluster */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <span data-nav-item className="tiny-label mr-1 hidden items-center gap-2 border-[2.5px] border-[var(--ink)] bg-[var(--concrete)] px-3 py-2 shadow-[3px_3px_0_0_var(--ink)] xl:flex">
               <span className="status-dot" aria-hidden="true" />
               {site.status}
             </span>
-            <nav aria-label="Primary" className="flex items-center gap-6">
+            <nav aria-label="Primary" className="flex items-center gap-1.5">
               {navItems.map((item) => (
                 <div key={item.to} data-nav-item className="overflow-hidden">
                   <TransitionLink
@@ -206,8 +208,12 @@ export default function Navigation() {
                 </div>
               ))}
             </nav>
-            <span data-nav-item className="tiny-label hidden tabular-nums opacity-50 lg:block" aria-hidden="true">
-              {time}
+            <span
+              data-nav-item
+              className="tiny-label hidden border-[2.5px] border-[var(--ink)] bg-[var(--ink)] px-3 py-2 tabular-nums text-[var(--acid)] shadow-[3px_3px_0_0_var(--orange)] xl:block"
+              aria-label={`Local time in Delhi: ${time}`}
+            >
+              DELHI {time} IST
             </span>
           </div>
 
@@ -218,17 +224,9 @@ export default function Navigation() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="tiny-label flex items-center gap-3 py-2 md:hidden"
+            className="tiny-label flex items-center gap-3 border-[2.5px] border-current px-3 py-2 lg:hidden"
           >
-            {menuOpen ? "CLOSE" : "MENU"}
-            <span className="flex h-3 w-5 flex-col justify-between" aria-hidden="true">
-              <span
-                className={`h-px w-full bg-current transition-transform duration-300 ${menuOpen ? "translate-y-[5.5px] rotate-45" : ""}`}
-              />
-              <span
-                className={`h-px w-full bg-current transition-transform duration-300 ${menuOpen ? "-translate-y-[5.5px] -rotate-45" : ""}`}
-              />
-            </span>
+            {menuOpen ? "CLOSE ✕" : "MENU ≡"}
           </button>
         </div>
       </header>

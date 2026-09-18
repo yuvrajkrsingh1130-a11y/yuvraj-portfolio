@@ -5,7 +5,7 @@ import { attachMagnetic, gsap, prefersReducedMotion } from "../lib/motion";
 import { scrollToTarget } from "../lib/scroll";
 
 /* ============================================================
-   FOOTER — huge name reveal, mail CTA, socials, metadata.
+   FOOTER — brutalist closer: huge name, mail block, channels.
    ============================================================ */
 
 export default function Footer() {
@@ -21,25 +21,25 @@ export default function Footer() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         "[data-footer-line]",
-        { yPercent: 105 },
+        { yPercent: 108 },
         {
           yPercent: 0,
-          duration: 1,
+          duration: 0.9,
           ease: "power4.out",
           stagger: 0.08,
-          scrollTrigger: { trigger: el, start: "top 78%" },
+          scrollTrigger: { trigger: el, start: "top 80%" },
         }
       );
       gsap.fromTo(
         "[data-footer-item]",
-        { y: 26, opacity: 0 },
+        { y: 28, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.7,
+          duration: 0.65,
           ease: "power3.out",
           stagger: 0.05,
-          scrollTrigger: { trigger: "[data-footer-cols]", start: "top 85%" },
+          scrollTrigger: { trigger: "[data-footer-cols]", start: "top 88%" },
         }
       );
     }, el);
@@ -51,12 +51,14 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={ref} className="relative overflow-hidden bg-[var(--ink)] text-[var(--paper)]">
-      {/* accent seam */}
-      <div className="h-[3px] w-full bg-[var(--accent)]" aria-hidden="true" />
+    <footer ref={ref} className="relative overflow-hidden border-t-[2.5px] border-[var(--ink)] bg-[var(--ink)] text-[var(--concrete)]">
+      <div className="grid-lines-inv pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
 
-      <div className="px-[var(--pad)] pb-10 pt-16 md:pt-24">
-        <p className="tiny-label mb-8 text-[var(--accent)]">LET'S BUILD SOMETHING.</p>
+      <div className="relative px-[var(--pad)] pb-10 pt-16 md:pt-24">
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+          <p className="tiny-label bg-[var(--acid)] px-2 py-1 text-[var(--ink)]">LET'S BUILD SOMETHING.</p>
+          <p className="tiny-label opacity-50">{site.coords} — {site.base}</p>
+        </div>
 
         {/* huge name */}
         <h2 className="sr-only">Contact Yuvraj Singh</h2>
@@ -65,7 +67,7 @@ export default function Footer() {
             <div key={line} className="overflow-hidden">
               <p
                 data-footer-line
-                className="display text-[clamp(4rem,17.5vw,17rem)] leading-[0.82] text-[var(--paper)]"
+                className="display text-[clamp(3.6rem,17vw,16rem)] leading-[0.88] text-[var(--concrete)]"
               >
                 {line}
               </p>
@@ -74,20 +76,20 @@ export default function Footer() {
         </div>
 
         {/* mail CTA */}
-        <div className="mt-12 md:mt-16">
+        <div className="mt-12 md:mt-14">
           <a
             href={`mailto:${site.email}`}
-            data-magnetic="0.25"
-            className="group inline-flex flex-wrap items-center gap-4 md:gap-6"
+            data-magnetic="0.22"
             data-cursor="WRITE"
+            className="group inline-flex flex-wrap items-center gap-4 border-[2.5px] border-[var(--concrete)] bg-[var(--ink)] px-5 py-4 transition-colors duration-300 hover:bg-[var(--acid)] hover:text-[var(--ink)] md:gap-6 md:px-8 md:py-5"
           >
             <span
               data-magnetic-inner
-              className="display text-[clamp(1.4rem,4.6vw,4rem)] leading-none transition-colors duration-300 group-hover:text-[var(--accent)]"
+              className="display text-[clamp(1.2rem,3.8vw,3rem)] leading-none"
             >
               {site.email}
             </span>
-            <span className="mono text-sm transition-transform duration-500 group-hover:translate-x-2">
+            <span className="mono text-lg transition-transform duration-500 group-hover:translate-x-2" aria-hidden="true">
               →
             </span>
           </a>
@@ -96,10 +98,10 @@ export default function Footer() {
         {/* columns */}
         <div
           data-footer-cols
-          className="mt-16 grid grid-cols-2 gap-10 border-t border-[var(--line-inv)] pt-10 md:grid-cols-4"
+          className="mt-14 grid grid-cols-2 gap-10 border-t-[2.5px] border-[var(--concrete)] pt-10 md:grid-cols-4"
         >
           <div data-footer-item>
-            <p className="tiny-label mb-4 opacity-50">SITEMAP</p>
+            <p className="tiny-label mb-4 text-[var(--acid)]">SITEMAP</p>
             <ul className="space-y-2">
               {[{ label: "INDEX", to: "/" }, ...navItems].map((item) => (
                 <li key={item.to}>
@@ -113,16 +115,11 @@ export default function Footer() {
           </div>
 
           <div data-footer-item>
-            <p className="tiny-label mb-4 opacity-50">SOCIALS</p>
+            <p className="tiny-label mb-4 text-[var(--acid)]">CHANNELS</p>
             <ul className="space-y-2">
-              {site.socials.map((s) => (
+              {site.socials.slice(1).map((s) => (
                 <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer-link mono text-xs"
-                  >
+                  <a href={s.href} target="_blank" rel="noreferrer" className="footer-link mono text-xs">
                     {s.label}
                     <span className="fl-arrow" aria-hidden="true">↗</span>
                   </a>
@@ -132,35 +129,38 @@ export default function Footer() {
           </div>
 
           <div data-footer-item>
-            <p className="tiny-label mb-4 opacity-50">DISCIPLINES</p>
-            <ul className="mono space-y-2 text-xs opacity-80">
-              <li>GRAPHIC DESIGN</li>
-              <li>BRAND DESIGN</li>
-              <li>WEB DESIGN</li>
-              <li>CODE</li>
-              <li>MOTION</li>
+            <p className="tiny-label mb-4 text-[var(--acid)]">DISCIPLINES</p>
+            <ul className="mono space-y-2 text-xs opacity-90">
+              <li>UI/UX DESIGN</li>
+              <li>BRANDING & POSTERS</li>
+              <li>WEB EXPERIMENTS</li>
+              <li>CREATIVE DIRECTION</li>
             </ul>
           </div>
 
           <div data-footer-item>
-            <p className="tiny-label mb-4 opacity-50">STATUS</p>
+            <p className="tiny-label mb-4 text-[var(--acid)]">STATUS</p>
             <p className="mono flex items-center gap-2 text-xs">
               <span className="status-dot" aria-hidden="true" />
               {site.status}
             </p>
-            <p className="mono mt-3 text-xs opacity-60">{site.location}</p>
+            <p className="mono mt-3 text-xs opacity-60">
+              {site.base}
+              <br />
+              {site.timezone}
+            </p>
           </div>
         </div>
 
         {/* bottom bar */}
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--line-inv)] pt-6">
-          <p className="tiny-label opacity-50">© 2026 YUVRAJ SINGH — ALL RIGHTS RESERVED</p>
-          <p className="tiny-label opacity-50">DESIGNED + BUILT WITH DESIGN × CODE × MOTION</p>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t-[2.5px] border-[var(--concrete)] pt-6">
+          <p className="tiny-label opacity-60">© 2026 YUVRAJ SINGH — ALL RIGHTS RESERVED</p>
+          <p className="tiny-label opacity-60">FUNCTIONAL CHAOS, BUILT IN DELHI</p>
           <button
             type="button"
             data-magnetic="0.35"
             onClick={() => scrollToTarget(0)}
-            className="tiny-label border border-[var(--line-inv)] px-4 py-2 transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="tiny-label border-[2.5px] border-[var(--concrete)] px-4 py-2 transition-colors hover:bg-[var(--acid)] hover:text-[var(--ink)]"
           >
             BACK TO TOP ↑
           </button>

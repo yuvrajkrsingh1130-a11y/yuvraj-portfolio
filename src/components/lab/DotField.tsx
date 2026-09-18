@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 
 /* 06 — DOT FIELD · pointer → a grid of dots bends around it */
 
@@ -33,6 +34,8 @@ export default function DotField() {
     const draw = (time: number) => {
       ctx.clearRect(0, 0, w, h);
       const gap = 26;
+      const R = 90 + labControls.chaos * 80;
+      const sp = labControls.speed;
       for (let x = gap / 2; x < w; x += gap) {
         for (let y = gap / 2; y < h; y += gap) {
           const dx = x - mouse.x;
@@ -41,14 +44,14 @@ export default function DotField() {
           let ox = 0;
           let oy = 0;
           let size = 1.6;
-          if (d < 120) {
-            const f = (1 - d / 120) * 18;
+          if (d < R) {
+            const f = (1 - d / R) * 18;
             ox = (dx / (d || 1)) * f;
             oy = (dy / (d || 1)) * f;
-            size = 1.6 + (1 - d / 120) * 3.2;
+            size = 1.6 + (1 - d / R) * 3.2;
           }
-          const wob = prefersReducedMotion() ? 0 : Math.sin(time * 0.002 + x * 0.05 + y * 0.03) * 0.8;
-          ctx.fillStyle = d < 120 ? "#ff4d00" : "#0c0c0c";
+          const wob = prefersReducedMotion() ? 0 : Math.sin(time * 0.002 * sp + x * 0.05 + y * 0.03) * 0.8;
+          ctx.fillStyle = d < R ? "#ff4d00" : "#0a0a0a";
           ctx.fillRect(x + ox + wob, y + oy + wob, size, size);
         }
       }
@@ -60,7 +63,7 @@ export default function DotField() {
         return;
       }
       raf = requestAnimationFrame(step);
-      draw(t);
+      if (!labControls.paused) draw(t);
     };
     const start = () => {
       if (active || prefersReducedMotion()) return;
@@ -104,7 +107,7 @@ export default function DotField() {
   return (
     <canvas
       ref={ref}
-      className="h-full w-full bg-[var(--bone)]"
+      className="h-full w-full bg-[var(--concrete)]"
       data-cursor="DRAG"
       aria-label="Dot field — a grid of dots bends around the pointer"
       role="img"

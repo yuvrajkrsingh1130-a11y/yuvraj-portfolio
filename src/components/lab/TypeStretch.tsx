@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { gsap, prefersReducedMotion } from "../../lib/motion";
+import { labControls } from "../../lib/labControls";
 
 /* 05 — TYPE STRETCH · hover → variable font gets pulled wide */
 
@@ -16,13 +17,13 @@ export default function TypeStretch() {
   };
 
   const go = (wide: boolean) => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || labControls.paused) return;
     tweenRef.current?.kill();
     tweenRef.current = gsap.to(state.current, {
-      wdth: wide ? 125 : 78,
+      wdth: wide ? Math.min(125, 102 + labControls.chaos * 23) : 78,
       wght: wide ? 900 : 750,
       skew: wide ? -7 : 0,
-      duration: 0.65,
+      duration: 0.65 / labControls.speed,
       ease: "elastic.out(1, 0.55)",
       onUpdate: apply,
     });
@@ -30,7 +31,7 @@ export default function TypeStretch() {
 
   return (
     <div
-      className="flex h-full w-full items-center justify-center overflow-hidden bg-[var(--bone)]"
+      className="flex h-full w-full items-center justify-center overflow-hidden bg-[var(--concrete)]"
       onPointerEnter={() => go(true)}
       onPointerLeave={() => go(false)}
       data-cursor="PULL"

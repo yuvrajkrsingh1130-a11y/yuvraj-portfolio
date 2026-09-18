@@ -103,13 +103,13 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[130] flex flex-col justify-between overflow-hidden bg-[var(--ink)] p-6 text-[var(--paper)] md:p-10"
+      className="fixed inset-0 z-[130] flex flex-col justify-between overflow-hidden bg-[var(--ink)] p-6 text-[var(--concrete)] md:p-10"
       aria-hidden="true"
     >
       {/* top line */}
       <div className="flex items-center justify-between">
-        <span className="tiny-label opacity-60">YUVRAJ SINGH — PORTFOLIO 2026</span>
-        <span ref={statusRef} className="tiny-label text-[var(--accent)]">
+        <span className="tiny-label opacity-60">YUVRAJ SINGH — DELHI, IST</span>
+        <span ref={statusRef} className="tiny-label text-[var(--acid)]">
           INITIALIZING EXPERIENCE
         </span>
       </div>
@@ -117,10 +117,10 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
       {/* huge name */}
       <div className="overflow-hidden">
         <div ref={titleRef}>
-          <p className="display text-[clamp(3rem,13vw,12rem)] leading-[0.82]">
+          <p className="display text-[clamp(3rem,13vw,12rem)] leading-[0.85]">
             YUVRAJ
             <br />
-            SINGH<span className="text-[var(--accent)]">.</span>
+            SINGH<span className="text-[var(--acid)]">*</span>
           </p>
         </div>
       </div>
@@ -129,10 +129,10 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
       <div>
         <div
           ref={lineRef}
-          className="mb-6 h-px w-full origin-left scale-x-0 bg-[var(--accent)]"
+          className="mb-6 h-[3px] w-full origin-left scale-x-0 bg-[var(--acid)]"
         />
         <div className="flex items-end justify-between">
-          <span className="tiny-label opacity-60">DESIGN × CODE × MOTION</span>
+          <span className="tiny-label opacity-60">UI/UX × BRANDING × WEB EXPERIMENTS</span>
           <span
             ref={counterRef}
             className="mono text-[clamp(2.5rem,7vw,5.5rem)] leading-none font-bold"

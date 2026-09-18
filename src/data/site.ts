@@ -6,60 +6,90 @@ export const site = {
   name: "YUVRAJ SINGH",
   firstName: "YUVRAJ",
   lastName: "SINGH",
-  role: "GRAPHIC DESIGNER / BRAND DESIGNER / CREATIVE DEVELOPER",
-  statement: "I DESIGN THINGS THAT MOVE.",
+  role: "MULTIDISCIPLINARY VISUAL & UI/UX DESIGNER",
+  base: "DELHI, INDIA",
+  statement: "DESIGN THAT REFUSES TO WHISPER.",
   email: "hello@yuvrajsingh.design",
-  status: "AVAILABLE FOR SELECTED PROJECTS",
-  location: "INDIA — WORKING WORLDWIDE",
+  status: "AVAILABLE FOR FREELANCE & CONTRACTS",
+  coords: "28.6139° N / 77.2090° E",
+  timezone: "IST (UTC+5:30)",
   socials: [
-    { label: "INSTAGRAM", href: "https://instagram.com/", handle: "@YUVRAJ.SINGH" },
-    { label: "LINKEDIN", href: "https://linkedin.com/", handle: "/IN/YUVRAJSINGH" },
-    { label: "GITHUB", href: "https://github.com/", handle: "/YUVRAJSINGH" },
+    { label: "EMAIL", href: "mailto:hello@yuvrajsingh.design", handle: "hello@yuvrajsingh.design" },
+    { label: "GITHUB", href: "https://github.com/", handle: "@yuvrajsingh" },
+    { label: "FIGMA", href: "https://figma.com/", handle: "@yuvraj" },
+    { label: "INSTAGRAM", href: "https://instagram.com/", handle: "@yuvraj.design" },
+    { label: "LINKEDIN", href: "https://linkedin.com/", handle: "/in/yuvrajsingh" },
   ],
 };
 
 export const navItems = [
   { label: "WORK", to: "/work", index: "01" },
-  { label: "LAB", to: "/lab", index: "02" },
-  { label: "ABOUT", to: "/about", index: "03" },
-  { label: "CONTACT", to: "/contact", index: "04" },
+  { label: "ABOUT", to: "/about", index: "02" },
+  { label: "SERVICES", to: "/services", index: "03" },
+  { label: "LAB", to: "/lab", index: "04" },
+  { label: "CONTACT", to: "/contact", index: "05" },
 ];
 
-export interface Skill {
-  name: string;
-  description: string;
+/* ---------------- About page ---------------- */
+
+export const philosophy = [
+  "COOKIE-CUTTER WEB DESIGN IS DEAD WEIGHT. CLEAN ENOUGH TO BE Boring IS STILL BORING.",
+  "I BUILD WITH FUNCTIONAL CHAOS — BRUTALIST GRIDS, PRECISION TYPOGRAPHY AND JUST ENOUGH NOISE TO MAKE PEOPLE LOOK TWICE.",
+  "EVERY PIXEL EARNS ITS PLACE. EVERY INTERACTION HAS A REASON. IF IT DOESN'T MOVE YOU, IT MOVES OUT.",
+];
+
+export interface ToolkitGroup {
+  group: string;
+  items: string[];
 }
 
-export const skills: Skill[] = [
+export const toolkit: ToolkitGroup[] = [
+  { group: "DESIGN", items: ["FIGMA", "KRITA", "PHOTO / SCAN"] },
+  { group: "MOTION & 3D", items: ["THREE.JS", "GSAP", "SHADERS"] },
+  { group: "BUILD", items: ["REACT", "TYPESCRIPT", "TAILWIND", "SUPABASE"] },
+  { group: "SHIP", items: ["VERCEL", "GIT", "PERFORMANCE"] },
+];
+
+export interface Milestone {
+  year: string;
+  title: string;
+  detail: string;
+  tag: string;
+}
+
+/* Sample timeline — replace with real milestones in src/data/site.ts */
+export const timeline: Milestone[] = [
   {
-    name: "GRAPHIC DESIGN",
-    description: "POSTERS / PRINT / CAMPAIGNS / VISUAL SYSTEMS",
+    year: "2026",
+    title: "INDEPENDENT PRACTICE",
+    detail:
+      "Freelance & contract work across UI/UX, branding and web experiments — taking selected projects end-to-end.",
+    tag: "FREELANCE",
   },
   {
-    name: "BRAND DESIGN",
-    description: "IDENTITIES / LOGOTYPES / GUIDELINES / ART DIRECTION",
+    year: "2025",
+    title: "AGENCY COLLABORATIONS",
+    detail:
+      "Collaborated with studios on interfaces, campaign graphics and motion-heavy marketing sites.",
+    tag: "COLLAB",
   },
   {
-    name: "WEB DESIGN",
-    description: "EDITORIAL LAYOUTS / ART-DIRECTED INTERFACES",
+    year: "2025",
+    title: "FIRST CLIENT ENGAGEMENTS",
+    detail:
+      "Shipped e-commerce interfaces, brand systems and poster series for early clients.",
+    tag: "CLIENT",
   },
   {
-    name: "CREATIVE DEVELOPMENT",
-    description: "WEBGL / SHADERS / GENERATIVE SYSTEMS",
-  },
-  {
-    name: "FRONT-END",
-    description: "REACT / TYPESCRIPT / PERFORMANCE / ACCESSIBILITY",
-  },
-  {
-    name: "MOTION",
-    description: "GSAP / SCROLL CHOREOGRAPHY / MICRO-INTERACTION",
-  },
-  {
-    name: "3D / INTERACTIVE",
-    description: "THREE.JS / PROCEDURAL FORMS / LIVE RENDERING",
+    year: "2024",
+    title: "GOING MULTIDISCIPLINARY",
+    detail:
+      "Merged graphic design practice with front-end code — the design + code + motion stack was born.",
+    tag: "ORIGIN",
   },
 ];
 
+/* ---------------- Lab ---------------- */
+
 export const labIntro =
-  "I DON'T ONLY DESIGN FINISHED WORK. I EXPERIMENT. THIS IS WHERE TYPE, CODE AND MOTION GET BROKEN ON PURPOSE.";
+  "GENERATIVE ART, SHADERS, RAW TYPE AND MICRO-INTERACTIONS. CLICK ANY EXPERIMENT TO OPEN THE INSPECTOR.";

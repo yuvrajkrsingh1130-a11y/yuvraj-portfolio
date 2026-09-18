@@ -15,12 +15,13 @@ const Work = lazy(() => import("./pages/Work"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Lab = lazy(() => import("./pages/Lab"));
 const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
 const Contact = lazy(() => import("./pages/Contact"));
 
 function NotFound() {
   return (
     <section className="flex min-h-[70vh] flex-col items-start justify-center px-[var(--pad)] pt-24">
-      <p className="tiny-label mb-4 text-[var(--accent)]">ERROR 404 — SIGNAL LOST</p>
+      <p className="tiny-label mb-4 text-[var(--orange)]">ERROR 404 — SIGNAL LOST</p>
       <h1 className="display text-[clamp(3rem,10vw,9rem)]">
         WRONG
         <br />
@@ -66,6 +67,7 @@ function Shell() {
             <Route path="/work/:slug" element={<ProjectDetail />} />
             <Route path="/lab" element={<Lab />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

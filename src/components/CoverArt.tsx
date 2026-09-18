@@ -37,7 +37,7 @@ function Monolith({ p }: { p: Project }) {
         x={600}
         y={520}
         textAnchor="middle"
-        fontFamily="Archivo,Arial"
+        fontFamily="Syne,Arial Black,Arial"
         fontWeight={900}
         fontSize={230}
         fill={bg}
@@ -69,10 +69,10 @@ function Static({ p }: { p: Project }) {
         />
       ))}
       <rect x={700} y={150} width={380} height={380} fill={fg} />
-      <text x={890} y={395} textAnchor="middle" fontFamily="Archivo,Arial" fontWeight={900} fontSize={150} fill={bg}>
+      <text x={890} y={395} textAnchor="middle" fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={150} fill={bg}>
         {p.index}
       </text>
-      <text x={80} y={680} fontFamily="Archivo,Arial" fontWeight={900} fontSize={190} fill={fg} letterSpacing={-6}>
+      <text x={80} y={680} fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={190} fill={fg} letterSpacing={-6}>
         {p.title}
       </text>
       <text x={80} y={130} fontFamily="'Space Mono',monospace" fontSize={28} fill={fg} letterSpacing={8}>
@@ -99,7 +99,7 @@ function Signal({ p }: { p: Project }) {
       <path d={wave(450, 180, 2)} stroke={accent} strokeWidth={5} fill="none" />
       <path d={wave(600, 90, 4)} stroke={fg} strokeWidth={2} fill="none" opacity={0.6} />
       <path d={wave(700, 40, 1)} stroke={fg} strokeWidth={1.5} fill="none" opacity={0.35} />
-      <text x={60} y={200} fontFamily="Archivo,Arial" fontWeight={900} fontSize={200} fill={fg} letterSpacing={-6}>
+      <text x={60} y={200} fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={200} fill={fg} letterSpacing={-6}>
         {p.title}
       </text>
       <text x={60} y={830} fontFamily="'Space Mono',monospace" fontSize={30} fill={accent} letterSpacing={12}>
@@ -119,7 +119,7 @@ function Velocity({ p }: { p: Project }) {
           <rect key={i} x={200 + i * 210} y={120} width={i === 2 ? 150 : 60} height={560} fill={i === 2 ? accent : fg} opacity={i === 2 ? 1 : 0.85} />
         ))}
       </g>
-      <text x={90} y={820} fontFamily="Archivo,Arial" fontWeight={900} fontSize={260} fill={fg} letterSpacing={-10}>
+      <text x={90} y={820} fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={260} fill={fg} letterSpacing={-10}>
         {p.title.split(" ")[0]}
       </text>
       <text x={1110} y={160} textAnchor="end" fontFamily="'Space Mono',monospace" fontSize={34} fill={fg} letterSpacing={8}>
@@ -138,13 +138,13 @@ function Anthem({ p }: { p: Project }) {
         <circle key={i} cx={600} cy={430} r={60 + i * 46} fill="none" stroke={fg} strokeWidth={i % 3 === 0 ? 6 : 2} opacity={1 - i * 0.08} />
       ))}
       <circle cx={600} cy={430} r={44} fill={fg} />
-      <text x={600} y={452} textAnchor="middle" fontFamily="Archivo,Arial" fontWeight={900} fontSize={54} fill={bg}>
+      <text x={600} y={452} textAnchor="middle" fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={54} fill={bg}>
         {p.index}
       </text>
-      <text x={60} y={150} fontFamily="Archivo,Arial" fontWeight={900} fontSize={130} fill={fg} letterSpacing={-4}>
+      <text x={60} y={150} fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={130} fill={fg} letterSpacing={-4}>
         NOISE
       </text>
-      <text x={1140} y={840} textAnchor="end" fontFamily="Archivo,Arial" fontWeight={900} fontSize={130} fill={fg} letterSpacing={-4}>
+      <text x={1140} y={840} textAnchor="end" fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={130} fill={fg} letterSpacing={-4}>
         ANTHEM
       </text>
       <rect x={60} y={780} width={260} height={50} fill={accent} />
@@ -174,7 +174,7 @@ function Machines({ p }: { p: Project }) {
       <text x={60} y={130} fontFamily="'Space Mono',monospace" fontSize={28} fill={fg} letterSpacing={10}>
         {p.index} — EXPERIMENT — {p.year}
       </text>
-      <text x={60} y={840} fontFamily="Archivo,Arial" fontWeight={900} fontSize={110} fill="none" stroke={fg} strokeWidth={2} letterSpacing={-2}>
+      <text x={60} y={840} fontFamily="Syne,Arial Black,Arial" fontWeight={900} fontSize={110} fill="none" stroke={fg} strokeWidth={2} letterSpacing={-2}>
         {p.title}
       </text>
     </>

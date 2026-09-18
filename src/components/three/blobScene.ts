@@ -170,7 +170,7 @@ export function createBlobScene(
     uMouse: { value: new THREE.Vector2(0, 0) },
     uLight: { value: new THREE.Color(opts.light ?? "#ece9e1") },
     uDark: { value: new THREE.Color(opts.dark ?? "#101010") },
-    uAccent: { value: new THREE.Color(opts.accent ?? "#ff4d00") },
+    uAccent: { value: new THREE.Color(opts.accent ?? "#ccff00") },
   };
 
   const detail = opts.detail ?? 5;

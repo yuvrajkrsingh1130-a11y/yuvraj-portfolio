@@ -1,83 +1,13 @@
 import { useLayoutEffect, useRef } from "react";
 import CTA from "../components/CTA";
 import SectionLabel from "../components/SectionLabel";
-import { skills, site } from "../data/site";
+import { site, philosophy, toolkit, timeline } from "../data/site";
 import { attachMagnetic, gsap, prefersReducedMotion } from "../lib/motion";
 import { usePageTitle } from "../lib/hooks";
 
 /* ============================================================
-   ABOUT — short, confident. No corporate biography.
+   ABOUT & STUDIO MANIFEST
    ============================================================ */
-
-const blocks = [
-  {
-    k: "WHO I AM",
-    v: "YUVRAJ SINGH — A DESIGNER WHO SHIPS CODE AND A DEVELOPER WHO THINKS IN LAYOUTS. I SIT IN THE GAP BETWEEN THE TWO, WHICH IS WHERE THE INTERESTING STUFF HAPPENS.",
-  },
-  {
-    k: "WHAT I DO",
-    v: "GRAPHIC DESIGN, BRAND IDENTITIES, WEB DESIGN AND CREATIVE DEVELOPMENT. VISUAL THINKING, BUILT WITH CODE AND MOTION.",
-  },
-  {
-    k: "HOW I WORK",
-    v: "SMALL MOVES, LOUD RESULTS. TYPE FIRST, GRID ALWAYS, MOTION WITH A REASON. NOTHING DECORATIVE THAT DOESN'T ALSO WORK.",
-  },
-  {
-    k: "WHAT I LIKE TO BUILD",
-    v: "IDENTITIES WITH A SPINE. WEBSITES THAT REACT. POSTERS THAT SHOUT. EXPERIMENTS THAT TEACH ME SOMETHING BY FRIDAY.",
-  },
-];
-
-function SkillRows() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".skill-row").forEach((row, i) => {
-        gsap.fromTo(
-          row,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.75,
-            ease: "power3.out",
-            delay: i * 0.04,
-            scrollTrigger: { trigger: row, start: "top 90%" },
-          }
-        );
-      });
-    }, el);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <div ref={ref}>
-      {skills.map((s, i) => (
-        <div
-          key={s.name}
-          className="skill-row group relative isolate overflow-hidden border-t border-[var(--line-strong)] py-6 md:py-8"
-          data-cursor="SKILL"
-        >
-          <div className="flex flex-wrap items-baseline justify-between gap-3 px-1">
-            <span className="mono text-xs opacity-50">{String(i + 1).padStart(2, "0")}</span>
-            <h3 className="skill-name display flex-1 text-center text-[clamp(2rem,6.6vw,5.6rem)] leading-[0.9]">
-              {s.name}
-            </h3>
-            <span className="mono hidden max-w-[16rem] text-right text-[10px] leading-relaxed opacity-0 transition-opacity duration-300 group-hover:opacity-70 md:block">
-              {s.description}
-            </span>
-          </div>
-          {/* mobile description */}
-          <p className="mono mt-2 px-1 text-[10px] opacity-50 md:hidden">{s.description}</p>
-        </div>
-      ))}
-      <div className="border-t border-[var(--line-strong)]" />
-    </div>
-  );
-}
 
 export default function About() {
   usePageTitle("ABOUT — YUVRAJ SINGH");
@@ -92,18 +22,18 @@ export default function About() {
       gsap.fromTo(
         "[data-about-rise]",
         { y: 48, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.09, ease: "power3.out" }
       );
       gsap.utils.toArray<HTMLElement>("[data-about-block]").forEach((b) => {
         gsap.fromTo(
           b,
-          { y: 40, opacity: 0 },
+          { y: 44, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 0.8,
             ease: "power3.out",
-            scrollTrigger: { trigger: b, start: "top 85%" },
+            scrollTrigger: { trigger: b, start: "top 86%" },
           }
         );
       });
@@ -116,57 +46,122 @@ export default function About() {
 
   return (
     <div ref={ref} className="px-[var(--pad)] pb-24 pt-[calc(var(--nav-h)+3rem)]">
-      {/* opener */}
-      <div className="mb-20 md:mb-28">
-        <p data-about-rise className="tiny-label mb-8 text-[var(--accent)]">
-          [ ABOUT — NO CORPORATE BIOGRAPHY INSIDE ]
+      {/* identity card */}
+      <section className="mb-20 md:mb-28">
+        <p data-about-rise className="tiny-label mb-8 inline-block bg-[var(--ink)] px-2 py-1 text-[var(--acid)]">
+          [ IDENTITY CARD — NO CORPORATE BIOGRAPHY INSIDE ]
         </p>
-        <h1 data-about-rise className="display text-[clamp(3.2rem,12.5vw,12rem)] leading-[0.84]">
-          HI, I'M
-          <br />
-          YUVRAJ<span className="text-[var(--accent)]">.</span>
-        </h1>
-        <p data-about-rise className="mono mt-8 text-xs opacity-70 md:text-sm">
-          {site.role}
-        </p>
-        <p data-about-rise className="mt-10 max-w-2xl text-lg leading-relaxed opacity-80 md:text-2xl">
-          I work across graphic design, branding, web design and creative development — combining
-          visual thinking with code and motion to create distinctive digital experiences.
-        </p>
-      </div>
 
-      {/* blocks */}
-      <div className="mb-24">
-        {blocks.map((b, i) => (
-          <div
-            key={b.k}
-            data-about-block
-            className="grid grid-cols-12 gap-y-4 border-t border-[var(--line-strong)] py-8 md:py-10"
-          >
-            <p className="tiny-label col-span-12 md:col-span-3">
-              <span className="text-[var(--accent)]">{String(i + 1).padStart(2, "0")}</span> — {b.k}
-            </p>
-            <p className="display col-span-12 text-[clamp(1.3rem,3.2vw,2.6rem)] leading-[1.05] md:col-span-9">
-              {b.v}
-            </p>
+        <div data-about-rise className="grid gap-6 md:grid-cols-12">
+          {/* portrait block */}
+          <div className="relative flex min-h-[280px] items-center justify-center border-[2.5px] border-[var(--ink)] bg-[var(--acid)] shadow-[7px_7px_0_0_var(--ink)] md:col-span-4">
+            <span className="display text-[clamp(5rem,12vw,9rem)]" aria-hidden="true">YS</span>
+            <span className="tiny-label absolute left-3 top-3">ID: YS-2026</span>
+            <span className="tiny-label absolute bottom-3 right-3">{site.coords}</span>
+            <div className="absolute inset-3 border-2 border-dashed border-[var(--ink)] opacity-40" aria-hidden="true" />
           </div>
-        ))}
-        <div className="border-t border-[var(--line-strong)]" aria-hidden="true" />
-      </div>
 
-      {/* skills */}
-      <SectionLabel index="05" className="mb-10">
-        SKILLS — HOVER TO STRESS-TEST THEM
-      </SectionLabel>
-      <SkillRows />
+          {/* name block */}
+          <div className="md:col-span-8">
+            <h1 data-about-rise className="display text-[clamp(2.8rem,9.5vw,9rem)] leading-[0.88]">
+              YUVRAJ
+              <br />
+              SINGH<span className="text-[var(--orange)]">*</span>
+            </h1>
+            <p data-about-rise className="mono mt-6 max-w-xl text-sm leading-relaxed md:text-base">
+              {site.role}, operating from {site.base}. I design interfaces, identities and
+              experiments — then I build them with code and motion so nothing ships as a static
+              mockup of itself.
+            </p>
+            <div data-about-rise className="mt-8 flex flex-wrap gap-3">
+              {["DELHI, INDIA", site.timezone, site.status].map((t, i) => (
+                <span
+                  key={t}
+                  className={`border-[2.5px] border-[var(--ink)] px-3 py-2 font-mono text-[10px] font-bold shadow-[3px_3px_0_0_var(--ink)] ${
+                    i === 2 ? "bg-[var(--acid)]" : "bg-[var(--concrete)]"
+                  }`}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div className="mt-20 flex flex-wrap items-center justify-between gap-8">
-        <p className="tiny-label max-w-[22rem] opacity-50">
-          DESIGN + CODE + MOTION — THAT'S THE WHOLE PITCH.
+      {/* philosophy */}
+      <section className="mb-20 md:mb-28">
+        <SectionLabel index="01" className="mb-10">STUDIO MANIFEST</SectionLabel>
+        <div className="space-y-6">
+          {philosophy.map((line, i) => (
+            <p
+              key={i}
+              data-about-block
+              className={`display max-w-5xl border-[2.5px] border-[var(--ink)] p-6 text-[clamp(1.4rem,3.6vw,3rem)] leading-[0.98] shadow-[5px_5px_0_0_var(--ink)] md:p-8 ${
+                i === 1 ? "bg-[var(--ink)] text-[var(--concrete)]" : i === 2 ? "bg-[var(--orange)]" : "bg-[var(--concrete)]"
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* toolkit */}
+      <section className="mb-20 md:mb-28">
+        <SectionLabel index="02" className="mb-10">TOOLKIT & STACK — RAW BLOCKS</SectionLabel>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {toolkit.map((group, gi) => (
+            <div
+              key={group.group}
+              data-about-block
+              className="border-[2.5px] border-[var(--ink)] bg-[var(--concrete)] shadow-[5px_5px_0_0_var(--ink)] transition-transform duration-300 [transition-timing-function:var(--ease-expo)] hover:-translate-y-1"
+            >
+              <p className={`tiny-label border-b-[2.5px] border-[var(--ink)] px-4 py-3 ${gi % 2 ? "bg-[var(--acid)]" : "bg-[var(--ink)] text-[var(--acid)]"}`}>
+                {group.group}
+              </p>
+              <ul className="mono space-y-3 p-4 text-sm font-bold">
+                {group.items.map((item) => (
+                  <li key={item} className="flex items-center justify-between border-b-2 border-dashed border-[var(--ink)]/30 pb-2 last:border-0">
+                    {item}
+                    <span className="text-[var(--orange)]" aria-hidden="true">+</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* experience timeline */}
+      <section className="mb-20">
+        <SectionLabel index="03" className="mb-10">EXPERIENCE — ROADMAP</SectionLabel>
+        <ol className="relative ml-2 border-l-[2.5px] border-[var(--ink)] pl-8 md:ml-4 md:pl-12">
+          {timeline.map((m) => (
+            <li key={`${m.year}-${m.title}`} data-about-block className="relative pb-12 last:pb-0">
+              <span
+                className="absolute -left-[43px] top-1 h-5 w-5 border-[2.5px] border-[var(--ink)] bg-[var(--acid)] md:-left-[59px]"
+                aria-hidden="true"
+              />
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="mono border-[2.5px] border-[var(--ink)] bg-[var(--ink)] px-2 py-1 text-xs font-bold text-[var(--acid)]">
+                  {m.year}
+                </span>
+                <span className="tiny-label border-[2.5px] border-[var(--ink)] px-2 py-1">{m.tag}</span>
+              </div>
+              <h3 className="display mt-4 text-3xl md:text-4xl">{m.title}</h3>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed opacity-80 md:text-base">{m.detail}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="tiny-label mt-10 opacity-60">* SAMPLE TIMELINE — REPLACE WITH REAL MILESTONES IN src/data/site.ts</p>
+      </section>
+
+      <div className="flex flex-wrap items-center justify-between gap-8 border-t-[2.5px] border-[var(--ink)] pt-12">
+        <p className="tiny-label max-w-[24rem] opacity-60">
+          DESIGN THAT REFUSES TO WHISPER — THAT'S THE WHOLE PITCH.
         </p>
-        <CTA to="/contact" accent>
-          LET'S WORK TOGETHER
-        </CTA>
+        <CTA to="/contact" accent>LET'S WORK TOGETHER</CTA>
       </div>
     </div>
   );
