@@ -1,39 +1,17 @@
-import React, { useState } from "react";
-import {
-  Copy,
-  Check,
-  ExternalLink,
-  MousePointer,
-  GitBranch,
-  Link2,
-  Mail,
-  ArrowUpRight,
-} from "lucide-react";
+import React from "react";
+import { Link2, Mail, ArrowUpRight } from "lucide-react";
 import { PageTab } from "../types";
 
 interface FooterProps {
   delhiClock: string;
   setActiveTab: (tab: PageTab) => void;
-  onOpenSurgeConsole: () => void;
+  onOpenSurgeConsole?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   delhiClock,
   setActiveTab,
-  onOpenSurgeConsole,
 }) => {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText("yuvrajsingh.portfolio.deploy@gmail.com");
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2400);
-    } catch {
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2400);
-    }
-  };
 
   return (
     <footer
@@ -61,58 +39,23 @@ export const Footer: React.FC<FooterProps> = ({
               Direct dispatch to Yuvraj Singh, UI/UX Designer &amp; Creative Frontend Engineer in Delhi.
             </p>
 
-            {/* Email Copy CTA + Live Surge Button */}
+            {/* Primary Action Button */}
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="inline-flex cursor-pointer items-center gap-2.5 rounded-full border border-white bg-[#F4F0E8] px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#103FEF] shadow-[4px_4px_0px_rgba(12,14,20,0.45)] transition hover:bg-white"
-              >
-                {copiedEmail ? (
-                  <>
-                    <Check className="h-4 w-4 text-[#103FEF]" />
-                    <span>COPIED: yuvrajsingh.portfolio.deploy@gmail.com</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-4 w-4 text-[#103FEF]" />
-                    <span>Copy: yuvrajsingh.portfolio.deploy@gmail.com</span>
-                  </>
-                )}
-              </button>
-
               <button
                 type="button"
                 onClick={() => {
                   setActiveTab("contact");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#0C0E14] bg-[#0C0E14] px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#F4F0E8] shadow-[3px_3px_0px_rgba(244,240,232,0.5)] transition hover:bg-[#0833D8]"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white bg-[#F4F0E8] px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-[#103FEF] shadow-[4px_4px_0px_rgba(12,14,20,0.45)] transition hover:bg-white"
               >
                 <span>Interactive Inquiry Estimator</span>
                 <ArrowUpRight className="h-4 w-4" />
               </button>
             </div>
 
-            {/* Social & Architectural Routes */}
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={onOpenSurgeConsole}
-                className="inline-flex cursor-pointer items-center gap-2 border border-[#F4F0E8]/35 bg-[#0833D8]/80 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-[#F4F0E8] transition hover:border-[#F4F0E8] hover:bg-[#F4F0E8] hover:text-[#103FEF]"
-              >
-                <MousePointer className="h-3.5 w-3.5" />
-                <span>Surge 404 &amp; Health HUD</span>
-              </button>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-[#F4F0E8]/35 bg-[#0833D8]/80 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-[#F4F0E8] transition hover:border-[#F4F0E8] hover:bg-[#F4F0E8] hover:text-[#103FEF]"
-              >
-                <GitBranch className="h-3.5 w-3.5" />
-                <span>GitHub Repositories</span>
-              </a>
+            {/* Architectural & Contact Routes */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="https://linkedin.com"
                 target="_blank"
@@ -122,13 +65,17 @@ export const Footer: React.FC<FooterProps> = ({
                 <Link2 className="h-3.5 w-3.5" />
                 <span>LinkedIn Profile</span>
               </a>
-              <a
-                href="mailto:yuvrajsingh.portfolio.deploy@gmail.com"
-                className="inline-flex items-center gap-2 border border-[#F4F0E8]/35 bg-[#0833D8]/80 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-[#F4F0E8] transition hover:border-[#F4F0E8] hover:bg-[#F4F0E8] hover:text-[#103FEF]"
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab("contact");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="inline-flex cursor-pointer items-center gap-2 border border-[#F4F0E8]/35 bg-[#0833D8]/80 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.18em] text-[#F4F0E8] transition hover:border-[#F4F0E8] hover:bg-[#F4F0E8] hover:text-[#103FEF]"
               >
                 <Mail className="h-3.5 w-3.5" />
                 <span>Direct Dispatch</span>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -218,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               <div className="mt-2 flex items-center justify-between border-t border-[#F4F0E8]/25 pt-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[#F4F0E8]/80">
                 <span>DELHI, INDIA · {delhiClock}</span>
-                <span>STATUS: 200 OK · SURGE</span>
+                <span>STATUS: AVAILABLE // 2026 EDITION</span>
               </div>
             </div>
           </div>

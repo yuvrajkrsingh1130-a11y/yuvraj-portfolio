@@ -149,11 +149,11 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="mt-6 flex flex-wrap items-center gap-2.5">
                 <button
                   type="button"
-                  onClick={onOpenSurgeConsole}
+                  onClick={() => setActiveTab("projects")}
                   className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#103FEF] bg-[#103FEF] px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[#F4F0E8] shadow-[3px_3px_0px_#0C0E14] transition hover:bg-[#0833D8]"
                 >
-                  <Terminal className="h-3.5 w-3.5" />
-                  <span>Surge Health: 200 OK</span>
+                  <span>Explore Case Studies</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </button>
 
                 <button
@@ -361,10 +361,10 @@ export const HomePage: React.FC<HomePageProps> = ({
 
                     <button
                       type="button"
-                      onClick={onOpenSurgeConsole}
+                      onClick={() => setActiveTab("projects")}
                       className="inline-flex cursor-pointer items-center gap-1 font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] underline decoration-2 underline-offset-4 hover:opacity-80 text-[#103FEF]"
                     >
-                      <span>Surge Health (200 OK)</span>
+                      <span>Explore All Projects</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </button>
                   </div>
@@ -550,10 +550,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                       </div>
                       <div className="flex items-center gap-2 rounded-full border border-[#F4F0E8]/20 bg-[#F4F0E8]/10 px-3 py-0.5 font-mono text-[10px] text-[#F4F0E8]">
                         <span className="h-1.5 w-1.5 rounded-full bg-[#27C93F]" />
-                        <span>https://yuvrajsingh.surge.sh</span>
+                        <span>https://yuvraj.design</span>
                       </div>
                       <span className="font-mono text-[9px] uppercase text-[#103FEF] bg-[#F4F0E8] px-2 py-0.5 font-bold">
-                        {activeStage === 4 ? "200 OK · SURGE" : "ISO VIEWPORT"}
+                        {activeStage === 4 ? "PRODUCTION DOM // 60 FPS" : "ISO VIEWPORT"}
                       </span>
                     </div>
 
@@ -615,15 +615,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                         <div className="flex items-center justify-between gap-2 border-t border-[#F4F0E8]/10 pt-2">
                           <div className="flex items-center gap-1.5 font-mono text-[9px] text-[#F4F0E8]/80">
                             <Terminal className="h-3 w-3 text-[#103FEF]" />
-                            <span>$ surge --domain yuvrajsingh.surge.sh</span>
+                            <span>PRODUCTION BUNDLE // 0 CUMULATIVE LAYOUT SHIFT</span>
                           </div>
-                          <button
-                            type="button"
-                            onClick={onOpenSurgeConsole}
-                            className="inline-flex cursor-pointer items-center gap-1 rounded bg-[#103FEF] px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#F4F0E8] hover:bg-[#0833D8]"
-                          >
-                            <span>Inspect 200 OK</span>
-                          </button>
+                          <span className="inline-flex items-center rounded bg-[#103FEF] px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-[#F4F0E8]">
+                            WCAG AAA
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -955,7 +951,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       <Sparkles className="h-4 w-4" style={{ color: activeTokenAccent }} />
                       <div className="mt-2 font-mono text-xs font-bold">Edge Static CDN</div>
                       <p className="mt-1 font-mono text-[10px] text-[#0C0E14]/70">
-                        Surge Global Edge, 200.html Fallback
+                        Global Anycast Edge, Sub-50ms TTFB
                       </p>
                     </div>
                   </div>

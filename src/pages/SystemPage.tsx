@@ -28,7 +28,7 @@ export const SystemPage: React.FC = () => {
     { name: "Vellum Dark", hex: "#ECE7DC", role: "Surface Secondary" },
     { name: "Carbon Ink", hex: "#0C0E14", role: "Primary Typographic Body" },
     { name: "Drafting Vermilion", hex: "#D9381E", role: "Alerts & Diagnostics" },
-    { name: "Surge Edge Green", hex: "#27C93F", role: "200 OK Live Telemetry" },
+    { name: "Telemetry Emerald", hex: "#27C93F", role: "Live Production Status" },
   ];
 
   const typographyScales = [
@@ -36,7 +36,7 @@ export const SystemPage: React.FC = () => {
     { token: "text-headline", size: "48px", font: "Plus Jakarta Sans", weight: "700 Bold", sample: "Spatial Architecture & Web Systems" },
     { token: "text-title", size: "28px", font: "Plus Jakarta Sans", weight: "600 Semi", sample: "Design Systems & Token Engine" },
     { token: "text-body", size: "15px", font: "Plus Jakarta Sans", weight: "400 Normal", sample: "Mathematical precision applied to modern frontend engineering." },
-    { token: "font-mono-tech", size: "12px", font: "Space Mono", weight: "700 Bold", sample: "STAGE 04 // TTFB: 38MS · SURGE 200 OK" },
+    { token: "font-mono-tech", size: "12px", font: "Space Mono", weight: "700 Bold", sample: "STAGE 04 // TTFB: 38MS · PRODUCTION 60FPS" },
   ];
 
   const spacingGrid = [

@@ -5,7 +5,6 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ScrollProgressBar } from "./components/ScrollProgressBar";
 import { DraftingCursor } from "./components/DraftingCursor";
-import { SurgeDiagnosticModal } from "./components/SurgeDiagnosticModal";
 import { CaseStudyModal } from "./components/CaseStudyModal";
 import { HomePage } from "./pages/HomePage";
 import { ProjectsPage } from "./pages/ProjectsPage";
@@ -45,7 +44,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<PageTab>("home");
   const [blueprintXRay, setBlueprintXRay] = useState<boolean>(false);
   const [cursorEnabled, setCursorEnabled] = useState<boolean>(false);
-  const [surgeModalOpen, setSurgeModalOpen] = useState<boolean>(false);
   const [activeCaseStudy, setActiveCaseStudy] = useState<BlueprintProject | null>(null);
 
   // Cross-Network Safe Dual-Routing: Read initial route from URL Hash or Path
@@ -175,7 +173,6 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={handleTabChange}
         delhiClock={delhiClock}
-        onOpenSurgeConsole={() => setSurgeModalOpen(true)}
       />
 
       {/* Main Multi-Page Viewport with Animated Transitions */}
@@ -196,7 +193,6 @@ export default function App() {
                 setCursorEnabled={setCursorEnabled}
                 onOpenCaseStudy={(p) => setActiveCaseStudy(p)}
                 setActiveTab={handleTabChange}
-                onOpenSurgeConsole={() => setSurgeModalOpen(true)}
               />
             </motion.div>
           )}
@@ -211,7 +207,6 @@ export default function App() {
             >
               <ProjectsPage
                 onOpenCaseStudy={(p) => setActiveCaseStudy(p)}
-                onOpenSurgeConsole={() => setSurgeModalOpen(true)}
               />
             </motion.div>
           )}
@@ -238,7 +233,6 @@ export default function App() {
             >
               <AboutPage
                 setActiveTab={handleTabChange}
-                onOpenSurgeConsole={() => setSurgeModalOpen(true)}
               />
             </motion.div>
           )}
@@ -253,7 +247,6 @@ export default function App() {
             >
               <ContactPage
                 delhiClock={delhiClock}
-                onOpenSurgeConsole={() => setSurgeModalOpen(true)}
               />
             </motion.div>
           )}
@@ -264,19 +257,12 @@ export default function App() {
       <Footer
         delhiClock={delhiClock}
         setActiveTab={handleTabChange}
-        onOpenSurgeConsole={() => setSurgeModalOpen(true)}
       />
 
       {/* Deep-Dive Case Study Modal Drawer */}
       <CaseStudyModal
         project={activeCaseStudy}
         onClose={() => setActiveCaseStudy(null)}
-      />
-
-      {/* Surge Production & 404 Health Console Modal */}
-      <SurgeDiagnosticModal
-        isOpen={surgeModalOpen}
-        onClose={() => setSurgeModalOpen(false)}
       />
     </div>
   );

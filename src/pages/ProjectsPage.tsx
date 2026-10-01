@@ -220,14 +220,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
               </h3>
             </div>
 
-            <button
-              type="button"
-              onClick={onOpenSurgeConsole}
-              className="inline-flex cursor-pointer items-center gap-1.5 border border-[#103FEF] bg-[#F4F0E8] px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#103FEF] hover:bg-[#103FEF] hover:text-[#F4F0E8] transition"
-            >
-              <Terminal className="h-3.5 w-3.5" />
-              <span>Verify Surge 200 OK Status</span>
-            </button>
+            <div className="inline-flex items-center gap-1.5 border border-[#103FEF] bg-[#F4F0E8] px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#103FEF]">
+              <span className="h-2 w-2 rounded-full bg-[#27C93F] animate-pulse" />
+              <span>PRODUCTION BENCHMARK: PASS</span>
+            </div>
           </div>
 
           <div className="mt-6 overflow-x-auto">
@@ -239,7 +235,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                   <th className="p-3">LIGHTHOUSE</th>
                   <th className="p-3">EDGE LATENCY</th>
                   <th className="p-3">LAYOUT SHIFT</th>
-                  <th className="p-3">SURGE SPA STATUS</th>
+                  <th className="p-3">EDGE STATUS</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#103FEF]/20">
@@ -253,7 +249,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
                     <td className="p-3">
                       <span className="inline-flex items-center gap-1 text-[#27C93F] font-bold">
                         <CheckCircle2 className="h-3.5 w-3.5" />
-                        <span>200 OK (200.html)</span>
+                        <span>200 OK (LIVE)</span>
                       </span>
                     </td>
                   </tr>

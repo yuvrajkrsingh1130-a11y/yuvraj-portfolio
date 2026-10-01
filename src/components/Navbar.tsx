@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { Compass, ArrowUpRight, Menu, X, Terminal, Sparkles, Layers } from "lucide-react";
+import { Compass, ArrowUpRight, Menu, X } from "lucide-react";
 import { PageTab } from "../types";
 
 interface NavbarProps {
   activeTab: PageTab;
   setActiveTab: (tab: PageTab) => void;
   delhiClock: string;
-  onOpenSurgeConsole: () => void;
+  onOpenSurgeConsole?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
   delhiClock,
-  onOpenSurgeConsole,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -44,14 +43,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={onOpenSurgeConsole}
-            className="flex cursor-pointer items-center gap-1.5 border border-[#103FEF]/40 bg-[#F4F0E8] px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#103FEF] transition hover:bg-[#103FEF] hover:text-[#F4F0E8]"
-          >
+          <div className="flex items-center gap-1.5 border border-[#103FEF]/30 bg-[#F4F0E8] px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#103FEF]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#27C93F] animate-pulse" />
-            <span>SURGE EDGE: 200 OK (INSPECT)</span>
-          </button>
+            <span>SYSTEM STATUS: ACTIVE // 60 FPS</span>
+          </div>
 
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#0C0E14]/70">
             <span>STATUS: AVAILABLE FOR SELECT COMMISSIONS</span>
@@ -124,18 +119,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             type="button"
-            onClick={onOpenSurgeConsole}
-            title="Inspect Surge CDN Deployment & 404 Health"
-            className="hidden sm:inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#103FEF]/40 bg-[#ECE7DC] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#103FEF] hover:bg-[#103FEF] hover:text-[#F4F0E8] transition-colors"
-          >
-            <Terminal className="h-3.5 w-3.5" />
-            <span className="hidden lg:inline">Surge Health</span>
-          </button>
-
-          <button
-            type="button"
             onClick={() => handleTabClick("contact")}
-            className="inline-flex cursor-pointer items-center gap-1.5 sm:gap-2 rounded-full border border-[#0833D8] bg-[#103FEF] px-2.5 py-1.5 sm:px-4 sm:py-2 font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[#F4F0E8] shadow-[2px_2px_0px_#0C0E14] sm:shadow-[3px_3px_0px_#0C0E14] transition-all duration-200 hover:bg-[#0833D8]"
+            className="inline-flex cursor-pointer items-center gap-1.5 sm:gap-2 rounded-full border border-[#0833D8] bg-[#103FEF] px-3.5 py-1.5 sm:px-5 sm:py-2.5 font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[#F4F0E8] shadow-[2px_2px_0px_#0C0E14] sm:shadow-[3px_3px_0px_#0C0E14] transition-all duration-200 hover:bg-[#0833D8]"
           >
             <span>Start a Project</span>
             <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
@@ -175,17 +160,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="mt-4 flex flex-col gap-2 pt-4 border-t border-[#103FEF]/20 font-mono text-xs">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenSurgeConsole();
-              }}
-              className="flex items-center justify-between border border-[#103FEF] bg-[#103FEF]/10 p-2.5 text-[#103FEF]"
-            >
-              <span>SURGE 404 &amp; HEALTH CONSOLE</span>
-              <Terminal className="h-4 w-4" />
-            </button>
             <div className="flex items-center justify-between text-[11px] text-[#0C0E14]/75 px-1 py-1">
               <span>DELHI TIME:</span>
               <span className="font-bold text-[#103FEF]">{delhiClock}</span>

@@ -34,8 +34,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const scopeOptions = [
     {
       title: "Brand & Web Flagship",
-      desc: "Complete architectural website from raw sketches to production React/Tailwind on Surge static edge.",
-      deliverables: ["Hand-Drawn Spatial Wireframes", "Figma Token System", "React 19 + Framer Motion Codebase", "Surge Edge Deployment"],
+      desc: "Complete architectural website from raw sketches to production React/Tailwind on global edge CDN.",
+      deliverables: ["Hand-Drawn Spatial Wireframes", "Figma Token System", "React 19 + Framer Motion Codebase", "Edge CDN Deployment"],
     },
     {
       title: "Enterprise Design System",
@@ -283,24 +283,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <span className="font-mono text-[10px] uppercase tracking-wider text-[#0C0E14]/70 block mb-2">
                 OR DIRECT DISPATCH:
               </span>
-              <button
-                type="button"
-                onClick={handleCopyEmail}
+              <a
+                href="mailto:yuvrajkrsingh1130@gmail.com"
                 className="w-full flex cursor-pointer items-center justify-between border border-[#0C0E14]/30 bg-[#ECE7DC] p-3 font-mono text-xs font-bold text-[#103FEF] hover:bg-[#103FEF] hover:text-[#F4F0E8] transition"
               >
-                <span className="truncate">yuvrajsingh.portfolio.deploy@gmail.com</span>
-                {copiedEmail ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              </button>
+                <span className="truncate">yuvrajkrsingh1130@gmail.com</span>
+                <Send className="h-4 w-4" />
+              </a>
             </div>
 
             <div className="mt-4 pt-2 flex items-center justify-between font-mono text-[10px] text-[#0C0E14]/70">
-              <button
-                type="button"
-                onClick={onOpenSurgeConsole}
-                className="underline hover:text-[#103FEF] cursor-pointer"
-              >
-                Inspect Surge 200 OK Edge Status
-              </button>
+              <span className="text-[#103FEF] font-bold">STATUS: AVAILABLE // 2026 EDITION</span>
               <span>DELHI, INDIA</span>
             </div>
           </div>

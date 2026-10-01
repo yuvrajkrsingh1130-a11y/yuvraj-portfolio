@@ -105,7 +105,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                     STATIC HOSTING
                   </span>
                   <span className="font-mono text-xs font-bold text-[#27C93F] block mt-0.5">
-                    Surge Global Edge
+                    Global Anycast CDN
                   </span>
                 </div>
               </div>
@@ -114,20 +114,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <div className="mt-8 pt-4 border-t border-[#103FEF]/25 flex flex-col gap-2.5">
               <button
                 type="button"
-                onClick={onOpenSurgeConsole}
-                className="w-full flex items-center justify-between border border-[#103FEF] bg-[#103FEF] p-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[#F4F0E8] hover:bg-[#0833D8] transition"
-              >
-                <span>Surge 404 &amp; Health HUD</span>
-                <Terminal className="h-4 w-4" />
-              </button>
-
-              <button
-                type="button"
                 onClick={() => {
                   setActiveTab("contact");
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="w-full flex items-center justify-between border border-[#0C0E14] bg-[#ECE7DC] p-2.5 font-mono text-xs font-bold uppercase tracking-wider text-[#0C0E14] hover:bg-[#0C0E14] hover:text-[#F4F0E8] transition"
+                className="w-full flex items-center justify-between border border-[#103FEF] bg-[#103FEF] p-3 font-mono text-xs font-bold uppercase tracking-wider text-[#F4F0E8] hover:bg-[#0833D8] transition"
               >
                 <span>Dispatch Project Inquiry</span>
                 <ArrowUpRight className="h-4 w-4" />

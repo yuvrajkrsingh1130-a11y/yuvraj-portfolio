@@ -8,8 +8,8 @@ interface KineticTickerProps {
 
 export const KineticTicker: React.FC<KineticTickerProps> = ({ variant = "cream" }) => {
   const items = [
-    { label: "SURGE LIVE EDGE", icon: CheckCircle, tag: "200 OK" },
-    { label: "SPA ROUTING FIX", icon: Terminal, tag: "200.HTML ACTIVE" },
+    { label: "GLOBAL EDGE CDN", icon: CheckCircle, tag: "FASTLY ANYCAST" },
+    { label: "DYNAMIC ROUTING", icon: Terminal, tag: "SPA MULTI-VIEW" },
     { label: "FRAME RATE LOCK", icon: Zap, tag: "60 FPS" },
     { label: "FIGMA-TO-DOM", icon: Cpu, tag: "ZERO DRIFT" },
     { label: "DELHI STUDIO", icon: Compass, tag: "28.6139° N, 77.2090° E" },
