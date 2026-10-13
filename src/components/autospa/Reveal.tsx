@@ -51,7 +51,7 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
 /** Shared eyebrow label used above section headlines. */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.28em] text-blue-400">
+    <span className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.28em] text-sky-400">
       <span className="h-px w-8 bg-gradient-to-r from-transparent to-blue-500" aria-hidden />
       {children}
       <span className="h-px w-8 bg-gradient-to-l from-transparent to-blue-500" aria-hidden />
@@ -61,7 +61,7 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 
 /** Exact card physics requested in the design spec. */
 export const CARD_PHYSICS =
-  "transition-all duration-300 ease-out hover:-translate-y-2.5 hover:shadow-[0_12px_35px_rgba(59,130,246,0.25)] hover:border-blue-500/60";
+  "transition-all duration-300 ease-out hover:-translate-y-2.5 hover:shadow-[0_12px_35px_rgba(59,130,246,0.25)] hover:border-blue-400/50";
 
 /** Exact button micro-scale physics requested in the design spec. */
 export const BUTTON_PHYSICS =

@@ -3,7 +3,7 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-system, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --color-obsidian: #09090b;
+  --color-obsidian: #050507;
   --animate-marquee: marquee 42s linear infinite;
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-price-in: priceIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #09090b;
+  background-color: #050507;
   color: #fafafa;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;

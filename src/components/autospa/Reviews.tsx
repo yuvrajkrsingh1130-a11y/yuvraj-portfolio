@@ -49,7 +49,7 @@ export function Reviews() {
           <Eyebrow>Verified Social Proof</Eyebrow>
           <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Tampa&rsquo;s owners{" "}
-            <span className="font-lux-serif font-normal italic text-blue-400">trust us.</span>
+            <span className="font-lux-serif font-normal italic text-sky-400">trust us.</span>
           </h2>
         </Reveal>
 
@@ -112,7 +112,7 @@ export function Reviews() {
                   <div className="leading-tight">
                     <p className="flex items-center gap-1.5 text-sm font-extrabold text-white">
                       {review.name}
-                      <BadgeCheck className="h-4 w-4 shrink-0 text-blue-400" aria-label="Verified Google review" />
+                      <BadgeCheck className="h-4 w-4 shrink-0 text-sky-400" aria-label="Verified Google review" />
                     </p>
                     <p className="mt-0.5 text-xs font-semibold text-zinc-400">
                       {review.vehicle} • {review.neighborhood}
@@ -126,7 +126,7 @@ export function Reviews() {
                 </blockquote>
 
                 <footer className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-4">
-                  <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-blue-400">
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-sky-400">
                     {review.service}
                   </span>
                   <span className="flex items-center gap-1.5 text-[11px] font-bold text-zinc-500">

@@ -31,13 +31,13 @@ export function Hero({ onReserve, openNow }: HeroProps) {
           <source src={HERO_VIDEO} type="video/mp4" />
         </video>
         {/* Gradient + radial vignette so video melts into the page */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/80 via-[#09090b]/35 to-[#09090b]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/85 via-[#09090b]/25 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050507]/80 via-[#050507]/35 to-[#050507]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050507]/85 via-[#050507]/25 to-transparent" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 90% 65% at 50% 42%, transparent 0%, rgba(9,9,11,0.55) 78%, #09090b 100%)",
+              "radial-gradient(ellipse 90% 65% at 50% 42%, transparent 0%, rgba(9,9,11,0.55) 78%, #050507 100%)",
           }}
         />
         <div className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-blue-600/20 blur-[130px]" />
@@ -63,7 +63,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
             You Retail,
             <br />
             While We{" "}
-            <span className="font-lux-serif bg-gradient-to-r from-blue-300 via-blue-400 to-indigo-400 bg-clip-text pr-2 font-normal italic text-transparent drop-shadow-none">
+            <span className="font-lux-serif bg-gradient-to-r from-blue-300 via-sky-400 to-indigo-400 bg-clip-text pr-2 font-normal italic text-transparent drop-shadow-none">
               Detail.
             </span>
           </h1>
@@ -84,7 +84,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
               type="button"
               onClick={onReserve}
               className={cn(
-                "group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-sm font-extrabold text-white shadow-[0_0_38px_rgba(59,130,246,0.55)] ring-1 ring-blue-400/60 hover:bg-blue-500 hover:shadow-[0_0_52px_rgba(59,130,246,0.85)]",
+                "group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-sm font-extrabold text-white shadow-[0_0_38px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/60 hover:bg-blue-500 hover:shadow-[0_0_52px_rgba(59,130,246,0.85)]",
                 BUTTON_PHYSICS
               )}
             >
@@ -121,7 +121,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
         >
           {TRUST.map((item) => (
             <div key={item.value} className="flex items-center gap-3.5 bg-[#0c0c10]/80 px-5 py-4.5 sm:py-5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/15 text-blue-400">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/15 text-sky-400">
                 <item.icon className="h-4.5 w-4.5" />
               </span>
               <span className="leading-tight">
@@ -173,8 +173,8 @@ export function ServiceTicker() {
           </span>
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#09090b] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#09090b] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#050507] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#050507] to-transparent" />
     </div>
   );
 }

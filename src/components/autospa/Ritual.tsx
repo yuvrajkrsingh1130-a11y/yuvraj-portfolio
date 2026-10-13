@@ -48,7 +48,7 @@ export function Ritual() {
           <Eyebrow>The Drop-Off Ritual</Eyebrow>
           <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Four steps.{" "}
-            <span className="font-lux-serif font-normal italic text-blue-400">Zero</span> waiting.
+            <span className="font-lux-serif font-normal italic text-sky-400">Zero</span> waiting.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-zinc-400">
             The only detail studio in Tampa built around your day — not the other way around.
@@ -77,14 +77,14 @@ export function Ritual() {
                   />
                   <div className="relative">
                     <div className="flex items-start justify-between">
-                      <span className="relative z-10 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-blue-500/30 bg-[#0c0c10] text-blue-400 shadow-[0_0_22px_rgba(59,130,246,0.25)]">
+                      <span className="relative z-10 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-blue-500/30 bg-[#0c0c10] text-sky-400 shadow-[0_0_22px_rgba(59,130,246,0.25)]">
                         <step.icon className="h-5 w-5" />
                       </span>
                       <span className="text-5xl font-extrabold tracking-tighter text-white/[0.07] transition-colors duration-300 group-hover:text-blue-500/20">
                         {step.number}
                       </span>
                     </div>
-                    <p className="mt-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-blue-400">
+                    <p className="mt-6 text-[10px] font-extrabold uppercase tracking-[0.24em] text-sky-400">
                       {step.meta}
                     </p>
                     <h3 className="mt-2 text-xl font-extrabold tracking-tight text-white">{step.title}</h3>

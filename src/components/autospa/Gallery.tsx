@@ -26,7 +26,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
       </span>
 
       <figcaption className="absolute inset-x-0 bottom-0 p-5">
-        <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-blue-400">{item.service}</p>
+        <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-sky-400">{item.service}</p>
         <div className="mt-1 flex flex-wrap items-baseline justify-between gap-2">
           <h3 className="text-lg font-extrabold tracking-tight text-white">{item.car}</h3>
           <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">{item.finish}</span>
@@ -51,7 +51,7 @@ export function Gallery() {
             </div>
             <h2 className="mt-5 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-left">
               Fresh out of the{" "}
-              <span className="font-lux-serif font-normal italic text-blue-400">bay.</span>
+              <span className="font-lux-serif font-normal italic text-sky-400">bay.</span>
             </h2>
           </div>
           <p className="mx-auto max-w-sm text-center text-sm leading-relaxed text-zinc-400 md:mx-0 md:text-right">

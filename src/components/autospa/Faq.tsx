@@ -80,7 +80,7 @@ export function Faq() {
           <Eyebrow>Good Questions</Eyebrow>
           <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Before you{" "}
-            <span className="font-lux-serif font-normal italic text-blue-400">hand over the keys.</span>
+            <span className="font-lux-serif font-normal italic text-sky-400">hand over the keys.</span>
           </h2>
         </Reveal>
 
@@ -103,7 +103,7 @@ export function Faq() {
             <a
               href={PHONE_HREF}
               className={cn(
-                "inline-flex items-center gap-1.5 font-extrabold text-blue-400 underline decoration-blue-500/40 underline-offset-4 hover:text-blue-300",
+                "inline-flex items-center gap-1.5 font-extrabold text-sky-400 underline decoration-blue-500/40 underline-offset-4 hover:text-blue-300",
                 BUTTON_PHYSICS
               )}
             >

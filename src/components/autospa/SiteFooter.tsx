@@ -10,7 +10,7 @@ interface SiteFooterProps {
 
 export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#060608]">
+    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#050507]">
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500/60 to-transparent"
         aria-hidden
@@ -30,7 +30,7 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
               </span>
               <span className="leading-tight">
                 <span className="block text-base font-extrabold tracking-tight text-white">
-                  Auto Spa America <span className="font-light text-blue-400">•</span> International Plaza
+                  Auto Spa America <span className="font-light text-sky-400">•</span> International Plaza
                 </span>
                 <span className="block text-[9.5px] font-bold uppercase tracking-[0.24em] text-zinc-500">
                   Exotic Detailing • Tampa, Florida
@@ -46,7 +46,7 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
               type="button"
               onClick={onReserve}
               className={cn(
-                "mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-blue-400/50 hover:bg-blue-500",
+                "mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500",
                 BUTTON_PHYSICS
               )}
             >
@@ -78,14 +78,14 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
             <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-zinc-500">Visit</p>
             <ul className="mt-4 space-y-3.5 text-sm text-zinc-400">
               <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-sky-400" />
                 <span>
                   {ADDRESS}
                   <span className="block text-zinc-500">Lower garage, under Cheesecake Factory</span>
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-sky-400" />
                 <span>
                   Mon–Sat 10 AM – 7 PM • Sun 11 AM – 7 PM
                   <span className="mt-0.5 flex items-center gap-1.5 font-semibold text-zinc-300">
@@ -104,7 +104,7 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
               href={PHONE_HREF}
               className="mt-4 flex items-center gap-2.5 text-sm font-extrabold text-white transition-colors hover:text-blue-300"
             >
-              <Phone className="h-4 w-4 text-blue-400" /> {PHONE_DISPLAY}
+              <Phone className="h-4 w-4 text-sky-400" /> {PHONE_DISPLAY}
             </a>
             <p className="mt-3 text-sm leading-relaxed text-zinc-500">
               Call the desk for same-day bay availability and ceramic consultations.

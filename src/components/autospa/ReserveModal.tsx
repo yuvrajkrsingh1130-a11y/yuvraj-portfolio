@@ -105,12 +105,12 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
         ref={dialogRef}
         className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] border border-white/12 bg-[#101014] shadow-[0_40px_120px_rgba(0,0,0,0.8)] sm:rounded-[1.75rem]"
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/70 to-transparent" aria-hidden />
 
         {/* Header */}
         <div className="flex items-start justify-between gap-4 p-6 pb-0 sm:p-8 sm:pb-0">
           <div>
-            <p className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.26em] text-blue-400">
+            <p className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.26em] text-sky-400">
               <Sparkles className="h-3.5 w-3.5" /> Auto Spa America
             </p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white">
@@ -168,7 +168,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
             <p className="mt-5 text-center text-[13px] leading-relaxed text-zinc-400">
               We&rsquo;ll text <span className="font-bold text-white">{phone}</span> to confirm.
               Need to adjust? Call the desk at{" "}
-              <a href={PHONE_HREF} className="font-bold text-blue-400 hover:text-blue-300">
+              <a href={PHONE_HREF} className="font-bold text-sky-400 hover:text-blue-300">
                 {PHONE_DISPLAY}
               </a>
               .
@@ -205,7 +205,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
                   ))}
                   <option value={CERAMIC_ID}>System X® Ceramic Consultation — Free</option>
                 </select>
-                <Gem className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-blue-400" />
+                <Gem className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-sky-400" />
               </div>
               <p aria-live="polite" className="mt-2 text-xs font-bold text-blue-300">
                 {priceLabel}
@@ -320,7 +320,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
             <button
               type="submit"
               className={cn(
-                "group flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 py-4 text-sm font-extrabold text-white shadow-[0_0_34px_rgba(59,130,246,0.55)] ring-1 ring-blue-400/50 hover:bg-blue-500",
+                "group flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 py-4 text-sm font-extrabold text-white shadow-[0_0_34px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/50 hover:bg-blue-500",
                 BUTTON_PHYSICS
               )}
             >
@@ -329,11 +329,11 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             <p className="flex items-center justify-center gap-1.5 text-center text-[11px] font-semibold text-zinc-500">
-              <Check className="h-3.5 w-3.5 text-blue-400" />
+              <Check className="h-3.5 w-3.5 text-sky-400" />
               No prepayment. Pay at pickup — and only when you love the finish.
             </p>
             <p className="flex items-center justify-center gap-1.5 text-center text-xs font-semibold text-zinc-500">
-              Prefer to talk? <Phone className="h-3.5 w-3.5 text-blue-400" />
+              Prefer to talk? <Phone className="h-3.5 w-3.5 text-sky-400" />
               <a href={PHONE_HREF} className="font-bold text-zinc-300 hover:text-white">
                 {PHONE_DISPLAY}
               </a>

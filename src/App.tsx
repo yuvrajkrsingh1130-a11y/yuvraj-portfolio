@@ -60,7 +60,7 @@ function IntroLoader({ done }: { done: boolean }) {
     <div
       aria-hidden={done}
       className={cn(
-        "fixed inset-0 z-[90] flex items-center justify-center bg-[#09090b] transition-all duration-700 ease-out",
+        "fixed inset-0 z-[90] flex items-center justify-center bg-[#050507] transition-all duration-700 ease-out",
         done ? "pointer-events-none -translate-y-3 opacity-0" : "opacity-100"
       )}
     >
@@ -113,7 +113,7 @@ function ScrollProgress() {
   return (
     <div className="fixed inset-x-0 top-0 z-[60] h-[2.5px] bg-transparent" aria-hidden>
       <div
-        className="h-full bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-400 shadow-[0_0_12px_rgba(59,130,246,0.8)] transition-[width] duration-150 ease-out"
+        className="h-full bg-gradient-to-r from-blue-600 via-sky-400 to-indigo-400 shadow-[0_0_12px_rgba(59,130,246,0.8)] transition-[width] duration-150 ease-out"
         style={{ width: `${progress * 100}%` }}
       />
     </div>
@@ -146,17 +146,25 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] font-sans text-zinc-100 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#050507] font-sans text-zinc-100 selection:bg-blue-600 selection:text-white">
       <IntroLoader done={!loading} />
       <ScrollProgress />
       <Navbar onReserve={() => openReserve()} />
 
       <main
         className={cn(
-          "transition-all delay-100 duration-1000 ease-out",
+          "relative transition-all delay-100 duration-1000 ease-out",
           loading ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
         )}
       >
+        {/* Ambient sapphire / ice-blue atmosphere over deepest obsidian */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-[640px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-950/30 via-transparent to-transparent" />
+          <div className="absolute -left-40 top-[30%] h-[420px] w-[420px] rounded-full bg-[#38bdf8]/[0.06] blur-[140px]" />
+          <div className="absolute -right-40 top-[58%] h-[460px] w-[460px] rounded-full bg-blue-700/[0.08] blur-[150px]" />
+          <div className="absolute -left-32 top-[82%] h-[380px] w-[380px] rounded-full bg-[#38bdf8]/[0.05] blur-[140px]" />
+        </div>
+
         <Hero onReserve={() => openReserve()} openNow={openNow} />
         <ServiceTicker />
         <Ritual />
@@ -171,7 +179,7 @@ export default function App() {
       <SiteFooter onReserve={() => openReserve()} openNow={openNow} />
 
       {/* Mobile sticky conversion bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#09090b]/88 px-4 py-3 backdrop-blur-md lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#050507]/88 px-4 py-3 backdrop-blur-md lg:hidden">
         <div className="mx-auto flex max-w-lg gap-2.5">
           <a
             href={PHONE_HREF}
@@ -180,7 +188,7 @@ export default function App() {
               BUTTON_PHYSICS
             )}
           >
-            <Phone className="h-4 w-4 text-blue-400" /> {PHONE_DISPLAY}
+            <Phone className="h-4 w-4 text-sky-400" /> {PHONE_DISPLAY}
           </a>
           <button
             type="button"
