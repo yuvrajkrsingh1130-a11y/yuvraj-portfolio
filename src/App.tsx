@@ -1,268 +1,208 @@
-import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { PageTab, BlueprintProject } from "./types";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { ScrollProgressBar } from "./components/ScrollProgressBar";
-import { DraftingCursor } from "./components/DraftingCursor";
-import { CaseStudyModal } from "./components/CaseStudyModal";
-import { HomePage } from "./pages/HomePage";
-import { ProjectsPage } from "./pages/ProjectsPage";
-import { SystemPage } from "./pages/SystemPage";
-import { AboutPage } from "./pages/AboutPage";
-import { ContactPage } from "./pages/ContactPage";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Phone, Sparkles } from "lucide-react";
+import { Navbar } from "./components/autospa/Navbar";
+import { Hero, ServiceTicker } from "./components/autospa/Hero";
+import { Ritual } from "./components/autospa/Ritual";
+import { Packages } from "./components/autospa/Packages";
+import { Ceramic } from "./components/autospa/Ceramic";
+import { Gallery } from "./components/autospa/Gallery";
+import { Reviews } from "./components/autospa/Reviews";
+import { LocationSection } from "./components/autospa/LocationSection";
+import { Faq } from "./components/autospa/Faq";
+import { SiteFooter } from "./components/autospa/SiteFooter";
+import { CERAMIC_ID, ReserveModal } from "./components/autospa/ReserveModal";
+import { PHONE_DISPLAY, PHONE_HREF, type VehicleClass } from "./data/autospa";
+import { cn } from "./utils/cn";
+import { BUTTON_PHYSICS } from "./components/autospa/Reveal";
 
-// Live Delhi Clock Hook (Asia/Kolkata)
-function useDelhiClock() {
-  const [timeString, setTimeString] = useState<string>("20:30:00 IST");
+/* ------------------------------------------------------------------ */
+/*  Tampa open-now logic (America/New_York)                            */
+/*  Mon–Sat 10:00–19:00 · Sun 11:00–19:00                              */
+/* ------------------------------------------------------------------ */
+function useTampaHours() {
+  const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    const updateClock = () => {
-      try {
-        const formatter = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        });
-        setTimeString(`${formatter.format(new Date())} IST`);
-      } catch {
-        setTimeString("DELHI // IST");
-      }
-    };
-    updateClock();
-    const timer = window.setInterval(updateClock, 1000);
-    return () => window.clearInterval(timer);
+    const t = window.setInterval(() => setNow(new Date()), 60_000);
+    return () => window.clearInterval(t);
   }, []);
 
-  return timeString;
+  return useMemo(() => {
+    try {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        weekday: "short",
+        hour: "numeric",
+        hour12: false,
+      }).formatToParts(now);
+      const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
+      const hour = Number(parts.find((p) => p.type === "hour")?.value ?? "0");
+      const isSunday = weekday === "Sun";
+      const opens = isSunday ? 11 : 10;
+      const closes = 19;
+      const openNow = hour >= opens && hour < closes;
+      const range = isSunday ? "11:00 AM – 7:00 PM" : "10:00 AM – 7:00 PM";
+      return {
+        openNow,
+        todayLabel: `Today ${range} · Tampa, FL`,
+      };
+    } catch {
+      return { openNow: true, todayLabel: "Mon–Sat 10 AM – 7 PM · Sun 11 AM – 7 PM" };
+    }
+  }, [now]);
 }
 
-export default function App() {
-  const delhiClock = useDelhiClock();
-  const [activeTab, setActiveTab] = useState<PageTab>("home");
-  const [blueprintXRay, setBlueprintXRay] = useState<boolean>(false);
-  const [cursorEnabled, setCursorEnabled] = useState<boolean>(false);
-  const [activeCaseStudy, setActiveCaseStudy] = useState<BlueprintProject | null>(null);
+/* ------------------------------------------------------------------ */
+/*  Cinematic intro loader (skeleton shimmer -> fade)                  */
+/* ------------------------------------------------------------------ */
+function IntroLoader({ done }: { done: boolean }) {
+  return (
+    <div
+      aria-hidden={done}
+      className={cn(
+        "fixed inset-0 z-[90] flex items-center justify-center bg-[#09090b] transition-all duration-700 ease-out",
+        done ? "pointer-events-none -translate-y-3 opacity-0" : "opacity-100"
+      )}
+    >
+      <div className="w-full max-w-xs px-6 text-center">
+        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 shadow-[0_0_45px_rgba(59,130,246,0.55)] ring-1 ring-white/20">
+          <Sparkles className="h-7 w-7 text-white" strokeWidth={2.2} />
+        </span>
+        <p className="mt-6 text-lg font-extrabold tracking-tight text-white">Auto Spa America</p>
+        <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-500">
+          International Plaza • Tampa
+        </p>
+        {/* Skeleton shimmer bars */}
+        <div className="mt-8 space-y-2.5" aria-hidden>
+          <div className="skeleton-bar mx-auto h-2.5 w-4/5 rounded-full" />
+          <div className="skeleton-bar mx-auto h-2.5 w-3/5 rounded-full" />
+          <div className="skeleton-bar mx-auto h-2.5 w-2/3 rounded-full" />
+        </div>
+        <div className="mx-auto mt-8 h-[3px] w-44 overflow-hidden rounded-full bg-white/[0.07]">
+          <div className="h-full w-full origin-left animate-[loaderBar_1.15s_cubic-bezier(0.22,1,0.36,1)_both] rounded-full bg-gradient-to-r from-blue-500 to-indigo-400" />
+        </div>
+        <style>{`@keyframes loaderBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }`}</style>
+      </div>
+    </div>
+  );
+}
 
-  // Cross-Network Safe Dual-Routing: Read initial route from URL Hash or Path
+/* ------------------------------------------------------------------ */
+/*  Scroll progress hairline                                           */
+/* ------------------------------------------------------------------ */
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const syncRouteFromUrl = () => {
-      const hash = window.location.hash.replace("#/", "").replace("#", "").toLowerCase();
-      const path = window.location.pathname.replace("/", "").toLowerCase();
-      const route = hash || path;
-
-      if (route.startsWith("project") || route.startsWith("work")) {
-        setActiveTab("projects");
-      } else if (route.startsWith("system") || route.startsWith("token")) {
-        setActiveTab("system");
-      } else if (route.startsWith("about") || route.startsWith("manifesto")) {
-        setActiveTab("about");
-      } else if (route.startsWith("contact") || route.startsWith("dispatch")) {
-        setActiveTab("contact");
-      } else {
-        setActiveTab("home");
-      }
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        setProgress(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+      });
     };
-
-    syncRouteFromUrl();
-    window.addEventListener("hashchange", syncRouteFromUrl);
-    window.addEventListener("popstate", syncRouteFromUrl);
-
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("hashchange", syncRouteFromUrl);
-      window.removeEventListener("popstate", syncRouteFromUrl);
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
-  // Sync route back to hash for zero-risk static host navigation
-  const handleTabChange = (tab: PageTab) => {
-    setActiveTab(tab);
-    window.location.hash = tab === "home" ? "" : `/${tab}`;
-  };
+  return (
+    <div className="fixed inset-x-0 top-0 z-[60] h-[2.5px] bg-transparent" aria-hidden>
+      <div
+        className="h-full bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-400 shadow-[0_0_12px_rgba(59,130,246,0.8)] transition-[width] duration-150 ease-out"
+        style={{ width: `${progress * 100}%` }}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  App                                                                */
+/* ------------------------------------------------------------------ */
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [vehicle, setVehicle] = useState<VehicleClass>("sedan");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalPackage, setModalPackage] = useState<string>("french-spa-signature");
+  const { openNow, todayLabel } = useTampaHours();
+
+  useEffect(() => {
+    const t = window.setTimeout(() => setLoading(false), 1250);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  const openReserve = useCallback((packageId?: string) => {
+    if (packageId) setModalPackage(packageId);
+    setModalOpen(true);
+  }, []);
+
+  const openCeramic = useCallback(() => {
+    setModalPackage(CERAMIC_ID);
+    setModalOpen(true);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#F4F0E8] text-[#0C0E14] selection:bg-[#103FEF] selection:text-[#F4F0E8] relative">
-      {/* Global CSS Styles for Fonts and Blueprint Grids */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+    <div className="min-h-screen bg-[#09090b] font-sans text-zinc-100 selection:bg-blue-600 selection:text-white">
+      <IntroLoader done={!loading} />
+      <ScrollProgress />
+      <Navbar onReserve={() => openReserve()} />
 
-        :root {
-          --cobalt: #103FEF;
-          --cobalt-deep: #0833D8;
-          --cream: #F4F0E8;
-          --cream-dark: #ECE7DC;
-          --ink: #0C0E14;
-        }
-
-        html {
-          scroll-behavior: smooth;
-          font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        body {
-          overflow-x: clip;
-          width: 100%;
-        }
-
-        /* Hide scrollbars for horizontal pill bars on mobile */
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-
-        .font-editorial {
-          font-family: 'Instrument Serif', Georgia, serif;
-        }
-
-        .font-mono-tech {
-          font-family: 'Space Mono', monospace;
-        }
-
-        /* Architectural Hairline Blueprint Grid */
-        .blueprint-grid {
-          background-image:
-            linear-gradient(to right, rgba(16, 63, 239, 0.12) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16, 63, 239, 0.12) 1px, transparent 1px),
-            linear-gradient(to right, rgba(16, 63, 239, 0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16, 63, 239, 0.04) 1px, transparent 1px);
-          background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
-        }
-
-        .cobalt-blueprint-grid {
-          background-image:
-            linear-gradient(to right, rgba(244, 240, 232, 0.14) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(244, 240, 232, 0.14) 1px, transparent 1px),
-            linear-gradient(to right, rgba(244, 240, 232, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(244, 240, 232, 0.05) 1px, transparent 1px);
-          background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
-        }
-
-        @keyframes dashDraw {
-          0% { stroke-dashoffset: 240; }
-          50% { stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: 240; }
-        }
-
-        .animate-draft-line {
-          stroke-dasharray: 240;
-          animation: dashDraw 7s ease-in-out infinite;
-        }
-      `}</style>
-
-      {/* Warm Tracing Paper Grain Overlay */}
-      <div
-        className="pointer-events-none fixed inset-0 z-50 opacity-[0.045] mix-blend-multiply"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Top Scroll Progress Bar */}
-      <ScrollProgressBar />
-
-      {/* Optional Interactive Architectural Drafting Reticle Cursor */}
-      <DraftingCursor enabled={cursorEnabled} />
-
-      {/* Architectural Sticky Header & Multi-Page Navigation */}
-      <Navbar
-        activeTab={activeTab}
-        setActiveTab={handleTabChange}
-        delhiClock={delhiClock}
-      />
-
-      {/* Main Multi-Page Viewport with Animated Transitions */}
-      <main className="relative">
-        <AnimatePresence mode="wait">
-          {activeTab === "home" && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
-              <HomePage
-                blueprintXRay={blueprintXRay}
-                setBlueprintXRay={setBlueprintXRay}
-                cursorEnabled={cursorEnabled}
-                setCursorEnabled={setCursorEnabled}
-                onOpenCaseStudy={(p) => setActiveCaseStudy(p)}
-                setActiveTab={handleTabChange}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === "projects" && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProjectsPage
-                onOpenCaseStudy={(p) => setActiveCaseStudy(p)}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === "system" && (
-            <motion.div
-              key="system"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
-              <SystemPage />
-            </motion.div>
-          )}
-
-          {activeTab === "about" && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
-              <AboutPage
-                setActiveTab={handleTabChange}
-              />
-            </motion.div>
-          )}
-
-          {activeTab === "contact" && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ContactPage
-                delhiClock={delhiClock}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <main
+        className={cn(
+          "transition-all delay-100 duration-1000 ease-out",
+          loading ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
+        )}
+      >
+        <Hero onReserve={() => openReserve()} openNow={openNow} />
+        <ServiceTicker />
+        <Ritual />
+        <Packages vehicle={vehicle} onVehicleChange={setVehicle} onReserve={openReserve} />
+        <Ceramic onReserve={openCeramic} />
+        <Gallery />
+        <Reviews />
+        <LocationSection openNow={openNow} todayLabel={todayLabel} />
+        <Faq />
       </main>
 
-      {/* Architectural Blueprint Footer */}
-      <Footer
-        delhiClock={delhiClock}
-        setActiveTab={handleTabChange}
-      />
+      <SiteFooter onReserve={() => openReserve()} openNow={openNow} />
 
-      {/* Deep-Dive Case Study Modal Drawer */}
-      <CaseStudyModal
-        project={activeCaseStudy}
-        onClose={() => setActiveCaseStudy(null)}
+      {/* Mobile sticky conversion bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#09090b]/88 px-4 py-3 backdrop-blur-md lg:hidden">
+        <div className="mx-auto flex max-w-lg gap-2.5">
+          <a
+            href={PHONE_HREF}
+            className={cn(
+              "flex flex-1 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-3 text-[13px] font-extrabold text-white",
+              BUTTON_PHYSICS
+            )}
+          >
+            <Phone className="h-4 w-4 text-blue-400" /> {PHONE_DISPLAY}
+          </a>
+          <button
+            type="button"
+            onClick={() => openReserve()}
+            className={cn(
+              "flex flex-1 items-center justify-center gap-2 rounded-full bg-blue-600 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)]",
+              BUTTON_PHYSICS
+            )}
+          >
+            <Sparkles className="h-4 w-4" /> Reserve Slot
+          </button>
+        </div>
+      </div>
+      {/* Spacer so the sticky bar never covers footer content on mobile */}
+      <div className="h-[68px] lg:hidden" aria-hidden />
+
+      <ReserveModal
+        open={modalOpen}
+        initialPackageId={modalPackage}
+        vehicle={vehicle}
+        onVehicleChange={setVehicle}
+        onClose={() => setModalOpen(false)}
       />
     </div>
   );
