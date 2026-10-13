@@ -67,7 +67,7 @@ function IntroLoader({ done }: { done: boolean }) {
     >
       <div className="w-full max-w-xs px-6 text-center">
         <div className="flex justify-center">
-          <AutoSpaLogo className="text-[23px]" />
+          <AutoSpaLogo className="h-20" />
         </div>
         <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-500">
           International Plaza • Tampa

@@ -33,7 +33,7 @@ export function Navbar({ onReserve }: NavbarProps) {
         {/* Brand — original Auto Spa America wordmark */}
         <a href="#top" className="group flex min-w-0 items-center gap-3.5" aria-label="Auto Spa America — back to top">
           <span className="relative shrink-0 transition-transform duration-300 group-hover:scale-[1.04]">
-            <AutoSpaLogo className="text-[13px] sm:text-[15px]" />
+            <AutoSpaLogo className="h-10 sm:h-11" />
             <span className="absolute -right-2.5 -top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[#050507] bg-emerald-400" aria-hidden />
           </span>
           <span className="hidden min-w-0 border-l border-white/10 pl-3.5 leading-tight md:block">

@@ -26,7 +26,7 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
           {/* Brand */}
           <div className="lg:col-span-5">
             <a href="#top" className="inline-flex flex-col gap-2.5" aria-label="Auto Spa America — back to top">
-              <AutoSpaLogo className="text-[19px]" />
+              <AutoSpaLogo className="h-16" />
               <span className="text-[9.5px] font-bold uppercase tracking-[0.26em] text-zinc-500">
                 International Plaza • Exotic Detailing • Tampa, Florida
               </span>

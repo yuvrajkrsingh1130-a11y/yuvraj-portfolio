@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -49,17 +49,6 @@ body {
   font-family: "Instrument Serif", Georgia, serif;
   font-weight: 400;
   letter-spacing: -0.01em;
-}
-
-/* Auto Spa America original script wordmark */
-.font-logo-script {
-  font-family: "Yellowtail", "Brush Script MT", cursive;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-.font-logo-sub {
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 /* ---- Scroll reveal (IntersectionObserver toggles .is-visible) ---- */
