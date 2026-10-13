@@ -11,6 +11,7 @@ import { LocationSection } from "./components/autospa/LocationSection";
 import { Faq } from "./components/autospa/Faq";
 import { SiteFooter } from "./components/autospa/SiteFooter";
 import { CERAMIC_ID, ReserveModal } from "./components/autospa/ReserveModal";
+import { AutoSpaLogo } from "./components/autospa/Logo";
 import { PHONE_DISPLAY, PHONE_HREF, type VehicleClass } from "./data/autospa";
 import { cn } from "./utils/cn";
 import { BUTTON_PHYSICS } from "./components/autospa/Reveal";
@@ -65,11 +66,10 @@ function IntroLoader({ done }: { done: boolean }) {
       )}
     >
       <div className="w-full max-w-xs px-6 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 shadow-[0_0_45px_rgba(59,130,246,0.55)] ring-1 ring-white/20">
-          <Sparkles className="h-7 w-7 text-white" strokeWidth={2.2} />
-        </span>
-        <p className="mt-6 text-lg font-extrabold tracking-tight text-white">Auto Spa America</p>
-        <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-500">
+        <div className="flex justify-center">
+          <AutoSpaLogo className="text-[23px]" />
+        </div>
+        <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-500">
           International Plaza • Tampa
         </p>
         {/* Skeleton shimmer bars */}

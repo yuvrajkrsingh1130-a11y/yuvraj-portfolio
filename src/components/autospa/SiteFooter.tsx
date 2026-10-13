@@ -1,7 +1,8 @@
-import { ArrowUp, Clock, MapPin, Phone, Sparkles } from "lucide-react";
+import { ArrowUp, Clock, MapPin, Phone } from "lucide-react";
 import { ADDRESS, NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "../../data/autospa";
 import { cn } from "../../utils/cn";
 import { BUTTON_PHYSICS } from "./Reveal";
+import { AutoSpaLogo } from "./Logo";
 
 interface SiteFooterProps {
   onReserve: () => void;
@@ -24,17 +25,10 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-5">
-            <a href="#top" className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 shadow-[0_0_28px_rgba(59,130,246,0.4)] ring-1 ring-white/20">
-                <Sparkles className="h-5 w-5 text-white" strokeWidth={2.2} />
-              </span>
-              <span className="leading-tight">
-                <span className="block text-base font-extrabold tracking-tight text-white">
-                  Auto Spa America <span className="font-light text-sky-400">•</span> International Plaza
-                </span>
-                <span className="block text-[9.5px] font-bold uppercase tracking-[0.24em] text-zinc-500">
-                  Exotic Detailing • Tampa, Florida
-                </span>
+            <a href="#top" className="inline-flex flex-col gap-2.5" aria-label="Auto Spa America — back to top">
+              <AutoSpaLogo className="text-[19px]" />
+              <span className="text-[9.5px] font-bold uppercase tracking-[0.26em] text-zinc-500">
+                International Plaza • Exotic Detailing • Tampa, Florida
               </span>
             </a>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-zinc-500">

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Menu, Phone, Sparkles, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { NAV_LINKS, PHONE_DISPLAY, PHONE_HREF } from "../../data/autospa";
 import { cn } from "../../utils/cn";
 import { BUTTON_PHYSICS } from "./Reveal";
+import { AutoSpaLogo } from "./Logo";
 
 interface NavbarProps {
   onReserve: () => void;
@@ -29,19 +30,17 @@ export function Navbar({ onReserve }: NavbarProps) {
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Brand */}
-        <a href="#top" className="group flex min-w-0 items-center gap-3" aria-label="Auto Spa America — back to top">
-          <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 shadow-[0_0_28px_rgba(59,130,246,0.45)] ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105">
-            <Sparkles className="h-5 w-5 text-white" strokeWidth={2.2} />
-            <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full border-2 border-[#050507] bg-emerald-400" aria-hidden />
+        {/* Brand — original Auto Spa America wordmark */}
+        <a href="#top" className="group flex min-w-0 items-center gap-3.5" aria-label="Auto Spa America — back to top">
+          <span className="relative shrink-0 transition-transform duration-300 group-hover:scale-[1.04]">
+            <AutoSpaLogo className="text-[13px] sm:text-[15px]" />
+            <span className="absolute -right-2.5 -top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[#050507] bg-emerald-400" aria-hidden />
           </span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate text-[15px] font-extrabold tracking-tight text-white sm:text-base">
-              Auto Spa America
-              <span className="mx-1.5 font-light text-sky-400">•</span>
-              <span className="font-semibold text-zinc-300">International Plaza</span>
+          <span className="hidden min-w-0 border-l border-white/10 pl-3.5 leading-tight md:block">
+            <span className="block truncate text-[13px] font-extrabold tracking-tight text-white">
+              International Plaza
             </span>
-            <span className="block text-[9.5px] font-bold uppercase tracking-[0.24em] text-zinc-500">
+            <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.24em] text-zinc-500">
               Exotic Detailing • Tampa, FL
             </span>
           </span>
