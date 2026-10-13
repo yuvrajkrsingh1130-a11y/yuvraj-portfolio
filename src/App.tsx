@@ -146,7 +146,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050507] font-sans text-zinc-100 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#050507] font-sans text-zinc-100 selection:btn-lux selection:text-white">
       <IntroLoader done={!loading} />
       <ScrollProgress />
       <Navbar onReserve={() => openReserve()} />
@@ -194,7 +194,7 @@ export default function App() {
             type="button"
             onClick={() => openReserve()}
             className={cn(
-              "flex flex-1 items-center justify-center gap-2 rounded-full bg-blue-600 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)]",
+              "flex flex-1 items-center justify-center gap-2 rounded-full btn-lux py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)]",
               BUTTON_PHYSICS
             )}
           >

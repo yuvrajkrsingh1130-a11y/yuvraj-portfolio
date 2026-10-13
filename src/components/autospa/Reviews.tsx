@@ -73,7 +73,7 @@ export function Reviews() {
                 </span>
               </div>
               <p className="mt-1.5 text-sm font-medium text-zinc-400">
-                From <span className="font-bold text-white">300+ verified Google reviews</span> by
+                From <span className="font-bold text-white">350+ five-star Google reviews</span> by
                 Tampa exotic &amp; luxury car owners.
               </p>
             </div>

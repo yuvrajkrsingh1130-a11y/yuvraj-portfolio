@@ -84,7 +84,7 @@ export function Packages({ vehicle, onVehicleChange, onReserve }: PackagesProps)
             <span
               aria-hidden
               className={cn(
-                "absolute inset-y-1.5 w-[calc(50%-6px)] rounded-full bg-blue-600 shadow-[0_0_28px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/50 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "absolute inset-y-1.5 w-[calc(50%-6px)] rounded-full btn-lux shadow-[0_0_28px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/50 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 isSuv ? "translate-x-[calc(100%+6px)]" : "translate-x-1.5"
               )}
             />
@@ -169,10 +169,10 @@ export function Packages({ vehicle, onVehicleChange, onReserve }: PackagesProps)
                     {pkg.popular && (
                       <>
                         <div
-                          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-300 to-transparent"
+                          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ff5a3c] to-transparent"
                           aria-hidden
                         />
-                        <span className="absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-sky-400 to-blue-600 px-3 py-1.5 text-[9.5px] font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_0_24px_rgba(56,189,248,0.65)]">
+                        <span className="btn-lux btn-red absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[9.5px] font-extrabold uppercase tracking-[0.16em] text-white">
                           <Crown className="h-3 w-3" /> Most Popular
                         </span>
                       </>
@@ -222,7 +222,7 @@ export function Packages({ vehicle, onVehicleChange, onReserve }: PackagesProps)
                         "group/btn mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-extrabold",
                         BUTTON_PHYSICS,
                         pkg.popular
-                          ? "bg-blue-600 text-white shadow-[0_0_28px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500"
+                          ? "btn-lux text-white shadow-[0_0_28px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500"
                           : "border border-white/15 bg-white/5 text-white hover:border-sky-400/50 hover:bg-sky-500/10"
                       )}
                     >

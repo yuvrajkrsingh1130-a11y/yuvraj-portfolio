@@ -177,7 +177,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
               type="button"
               onClick={onClose}
               className={cn(
-                "mt-6 w-full rounded-full bg-blue-600 py-3.5 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(59,130,246,0.45)] hover:bg-blue-500",
+                "mt-6 w-full rounded-full btn-lux py-3.5 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(59,130,246,0.45)] hover:bg-blue-500",
                 BUTTON_PHYSICS
               )}
             >
@@ -300,7 +300,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
                       className={cn(
                         "rounded-full border px-4 py-2.5 text-xs font-extrabold transition-all duration-300",
                         slot === t
-                          ? "border-blue-500/60 bg-blue-600 text-white shadow-[0_0_20px_rgba(59,130,246,0.45)]"
+                          ? "border-blue-500/60 btn-lux text-white shadow-[0_0_20px_rgba(59,130,246,0.45)]"
                           : "border-white/10 bg-white/[0.04] text-zinc-300 hover:border-blue-500/40 hover:text-white"
                       )}
                     >
@@ -320,7 +320,7 @@ export function ReserveModal({ open, initialPackageId, vehicle, onVehicleChange,
             <button
               type="submit"
               className={cn(
-                "group flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 py-4 text-sm font-extrabold text-white shadow-[0_0_34px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/50 hover:bg-blue-500",
+                "group flex w-full items-center justify-center gap-2 rounded-full btn-lux py-4 text-sm font-extrabold text-white shadow-[0_0_34px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/50 hover:bg-blue-500",
                 BUTTON_PHYSICS
               )}
             >

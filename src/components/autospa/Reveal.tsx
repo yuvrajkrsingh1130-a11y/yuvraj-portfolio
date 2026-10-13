@@ -48,13 +48,13 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
   );
 }
 
-/** Shared eyebrow label used above section headlines. */
+/** Shared eyebrow label used above section headlines (brand red accent). */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.28em] text-sky-400">
-      <span className="h-px w-8 bg-gradient-to-r from-transparent to-blue-500" aria-hidden />
+    <span className="inline-flex items-center gap-2.5 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#ff4653]">
+      <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#e8262f]" aria-hidden />
       {children}
-      <span className="h-px w-8 bg-gradient-to-l from-transparent to-blue-500" aria-hidden />
+      <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#2196e8]" aria-hidden />
     </span>
   );
 }

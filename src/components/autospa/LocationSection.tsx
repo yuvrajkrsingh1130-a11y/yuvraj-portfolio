@@ -84,7 +84,7 @@ export function LocationSection({ openNow, todayLabel }: LocationSectionProps) {
                 <ol className="mt-4 space-y-3">
                   {DRIVE_IN_STEPS.map((step, i) => (
                     <li key={step} className="flex items-start gap-3 text-[13px] leading-relaxed text-zinc-300">
-                      <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-blue-600 text-[10px] font-extrabold text-white">
+                      <span className="flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full btn-lux text-[10px] font-extrabold text-white">
                         {i + 1}
                       </span>
                       {step}
@@ -97,7 +97,7 @@ export function LocationSection({ openNow, todayLabel }: LocationSectionProps) {
                 <a
                   href={PHONE_HREF}
                   className={cn(
-                    "inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500",
+                    "inline-flex flex-1 items-center justify-center gap-2 rounded-full btn-lux px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500",
                     BUTTON_PHYSICS
                   )}
                 >

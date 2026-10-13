@@ -1,5 +1,5 @@
-import { ArrowRight, ChevronDown, MapPin, ShieldCheck, Sparkles, Star, Waves } from "lucide-react";
-import { HERO_POSTER, HERO_VIDEO } from "../../data/autospa";
+import { ArrowRight, Award, ChevronDown, MapPin, ShieldCheck, Sparkles, Star, Waves } from "lucide-react";
+import { HERO_CARD_IMAGE, HERO_POSTER, HERO_VIDEO } from "../../data/autospa";
 import { cn } from "../../utils/cn";
 import { BUTTON_PHYSICS } from "./Reveal";
 
@@ -9,9 +9,10 @@ interface HeroProps {
 }
 
 const TRUST = [
-  { icon: Star, value: "5.0 Google Rating", detail: "300+ verified reviews" },
+  { icon: Star, value: "5.0 Google Rating", detail: "350+ five-star reviews" },
   { icon: ShieldCheck, value: "10-Yr Ceramic Warranty", detail: "System X® transferable" },
   { icon: Waves, value: "100% Hand Wash", detail: "No tunnels. No brushes. Ever." },
+  { icon: Award, value: "17 Years in Service", detail: "4,500+ cars detailed yearly" },
 ];
 
 export function Hero({ onReserve, openNow }: HeroProps) {
@@ -49,7 +50,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
         <div className="max-w-3xl">
           <div className="hero-enter" style={{ animationDelay: "0.05s" }}>
             <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/10 py-1.5 pl-2 pr-4 text-[11px] font-bold text-white shadow-lg backdrop-blur-md sm:text-xs">
-              <span className="inline-flex items-center gap-1 rounded-full bg-blue-600 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1 rounded-full btn-lux px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider">
                 <MapPin className="h-3 w-3" /> Tampa
               </span>
               <span className="truncate">📍 International Plaza (Directly Under Cheesecake Factory)</span>
@@ -84,7 +85,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
               type="button"
               onClick={onReserve}
               className={cn(
-                "group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-sm font-extrabold text-white shadow-[0_0_38px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/60 hover:bg-blue-500 hover:shadow-[0_0_52px_rgba(59,130,246,0.85)]",
+                "group inline-flex items-center justify-center gap-2 rounded-full btn-lux px-8 py-4 text-sm font-extrabold text-white shadow-[0_0_38px_rgba(59,130,246,0.55)] ring-1 ring-sky-400/60 hover:bg-blue-500 hover:shadow-[0_0_52px_rgba(59,130,246,0.85)]",
                 BUTTON_PHYSICS
               )}
             >
@@ -95,7 +96,7 @@ export function Hero({ onReserve, openNow }: HeroProps) {
             <a
               href="#packages"
               className={cn(
-                "inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white backdrop-blur-md hover:border-white/40 hover:bg-white/15",
+                "inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold text-white backdrop-blur-md hover:border-[#ff4653]/70 hover:bg-[#e8262f]/10 hover:shadow-[0_0_30px_rgba(232,38,47,0.25)]",
                 BUTTON_PHYSICS
               )}
             >
@@ -132,6 +133,36 @@ export function Hero({ onReserve, openNow }: HeroProps) {
           ))}
         </div>
       </div>
+
+      {/* Floating real-photo card — fresh out of our own bay */}
+      <figure
+        className="hero-enter absolute right-10 top-[21%] z-10 hidden w-[300px] rotate-[2.5deg] rounded-3xl border border-white/15 bg-white/[0.07] p-3 shadow-[0_30px_70px_rgba(0,0,0,0.6)] backdrop-blur-md transition-transform duration-500 hover:rotate-0 xl:block"
+        style={{ animationDelay: "0.7s" }}
+      >
+        <img
+          src={HERO_CARD_IMAGE}
+          alt="Porsche Cayenne detailed at Auto Spa America, International Plaza Tampa"
+          className="h-44 w-full rounded-2xl object-cover"
+          loading="eager"
+        />
+        <figcaption className="px-1.5 pb-1 pt-3">
+          <span className="flex items-center justify-between gap-2">
+            <span className="text-[13px] font-extrabold tracking-tight text-white">Porsche Cayenne</span>
+            <span className="flex items-center gap-0.5" aria-label="5 star finish">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-3 w-3 fill-amber-400 text-amber-400" />
+              ))}
+            </span>
+          </span>
+          <span className="mt-1 block text-[11px] font-semibold text-zinc-400">
+            French Spa Signature — detailed today under Cheesecake Factory
+          </span>
+          <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#ff4653]/30 bg-[#e8262f]/10 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.14em] text-[#ff8a8a]">
+            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" aria-hidden />
+            Fresh out of the bay
+          </span>
+        </figcaption>
+      </figure>
 
       {/* Scroll hint */}
       <a

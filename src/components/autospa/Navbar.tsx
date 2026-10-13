@@ -75,7 +75,7 @@ export function Navbar({ onReserve }: NavbarProps) {
             type="button"
             onClick={onReserve}
             className={cn(
-              "inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500 hover:shadow-[0_0_36px_rgba(59,130,246,0.75)]",
+              "inline-flex items-center gap-2 rounded-full btn-lux px-5 py-2.5 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500 hover:shadow-[0_0_36px_rgba(59,130,246,0.75)]",
               BUTTON_PHYSICS
             )}
           >

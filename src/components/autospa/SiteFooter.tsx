@@ -40,7 +40,7 @@ export function SiteFooter({ onReserve, openNow }: SiteFooterProps) {
               type="button"
               onClick={onReserve}
               className={cn(
-                "mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500",
+                "mt-6 inline-flex items-center gap-2 rounded-full btn-lux px-6 py-3 text-[13px] font-extrabold text-white shadow-[0_0_26px_rgba(59,130,246,0.5)] ring-1 ring-sky-400/50 hover:bg-blue-500",
                 BUTTON_PHYSICS
               )}
             >

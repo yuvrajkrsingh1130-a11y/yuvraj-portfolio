@@ -1,3 +1,10 @@
+import cayenneImg from "../assets/porsche-cayenne.jpg";
+import rangeBlackImg from "../assets/range-rover-black.jpg";
+import jaguarImg from "../assets/jaguar-interior.jpg";
+import denaliImg from "../assets/gmc-denali.jpg";
+import rangeSportImg from "../assets/range-rover-sport.jpg";
+import foamWashImg from "../assets/foam-wash.jpg";
+
 export type VehicleClass = "sedan" | "suv";
 
 export interface DetailPackage {
@@ -21,8 +28,7 @@ export const MAPS_EMBED =
 
 export const HERO_VIDEO =
   "https://videos.pexels.com/video-files/6159208/6159208-hd_1920_1080_30fps.mp4";
-export const HERO_POSTER =
-  "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1920&auto=format&fit=crop";
+export const HERO_POSTER = cayenneImg;
 
 export const NAV_LINKS = [
   { label: "Packages", href: "#packages" },
@@ -105,56 +111,54 @@ export interface GalleryItem {
   finish: string;
 }
 
-const FALLBACK_CAR =
-  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop";
-
+/* Real photography from Auto Spa America's own shop floor at International Plaza. */
 export const GALLERY: GalleryItem[] = [
   {
-    src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "Porsche 911 Carrera",
+    src: cayenneImg,
+    fallback: cayenneImg,
+    car: "Porsche Cayenne",
     service: "French Spa Signature",
-    finish: "Mirror Polish",
+    finish: "Detailed In-House",
   },
   {
-    src: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "BMW M4 Competition",
+    src: rangeBlackImg,
+    fallback: rangeBlackImg,
+    car: "Range Rover Autobiography",
     service: "System X® Ceramic",
     finish: "9H Diamond Armor",
   },
   {
-    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "Dodge Challenger SRT",
+    src: foamWashImg,
+    fallback: foamWashImg,
+    car: "Range Rover — Foam Bath",
     service: "Ultimate Exterior",
-    finish: "Carnauba Hand-Buff",
+    finish: "2-Bucket Hand Wash",
   },
   {
-    src: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "Ford Mustang GT",
-    service: "Paint Correction",
-    finish: "Showroom Gloss",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "Mercedes-AMG GT",
+    src: rangeSportImg,
+    fallback: rangeSportImg,
+    car: "Range Rover Sport",
     service: "French Spa Signature",
-    finish: "Concours Finish",
+    finish: "Showroom Mirror Finish",
   },
   {
-    src: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1200&auto=format&fit=crop",
-    fallback: FALLBACK_CAR,
-    car: "Nissan GT-R Premium",
-    service: "System X® Ceramic",
-    finish: "Hydrophobic Sheeting",
+    src: denaliImg,
+    fallback: denaliImg,
+    car: "GMC Sierra Denali",
+    service: "Ultimate Exterior",
+    finish: "Hand-Buffed Carnauba",
+  },
+  {
+    src: jaguarImg,
+    fallback: jaguarImg,
+    car: "Jaguar — Interior Detail",
+    service: "Ultimate Interior",
+    finish: "Steam & Leather Care",
   },
 ];
 
-export const CERAMIC_IMAGE =
-  "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1400&auto=format&fit=crop";
+export const CERAMIC_IMAGE = foamWashImg;
+export const HERO_CARD_IMAGE = cayenneImg;
 
 export interface Review {
   name: string;
